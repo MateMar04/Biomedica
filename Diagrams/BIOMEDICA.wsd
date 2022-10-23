@@ -1,0 +1,122 @@
+@startuml BIOMEDICA
+entity Medico {
+    * id
+    --
+    * matricula
+    * nombre
+    * apellido
+}
+entity Receta {
+    * id
+    --
+    * fecha
+    * id_medico
+    * id_paciente
+}
+
+entity Domicilio {
+    * id
+    --
+    * calle
+    * altura
+}
+
+entity Telefono {
+    * id
+    --
+    * numero
+}
+
+entity Genero {
+    * id
+    --
+    * descripcion
+}
+
+entity Paciente {
+    * numero
+    --
+    * dni
+    * nombre
+    * apellido
+    * id_genero
+    * id_domicilio
+    * id_telefono
+    * email
+}
+
+entity Estado {
+    * id
+    --
+    * descripcion
+}
+
+entity Estudio {
+    * id
+    --
+    * descripcion
+    * rangos_de_referencias
+    * id_metodo
+    * id_unidad_de_medida
+}
+
+entity Solicitud {
+    * id
+    --
+    * id_receta
+    * id_extraccionista
+    * id_estado
+    * fecha
+    * hora
+    * CAP
+}
+
+entity Extraccionista {
+    * id
+    --
+    * nombre
+    * apellido
+}
+
+entity Muestra {
+    * id
+    --
+    * descripcion
+    * fecha
+    * id_solicitud
+}
+
+entity Metodo {
+    * id
+    --
+    * descripcion
+}
+
+entity Resultado {
+    * id
+    --
+    * valor_hallado
+    * id_estudio
+}
+
+entity UnidadDeMedida {
+    * id
+    --
+    * unidad
+}
+
+Paciente ||..|| Domicilio
+Paciente ||..|{ Telefono
+Paciente ||..o{ Receta
+Paciente }o..|| Genero
+Receta }o..|| Medico
+Receta ||..o| Solicitud
+Solicitud }o..|| Estado
+Solicitud ||..o| Muestra
+Solicitud }o..|| Extraccionista
+Estudio }o..|| Metodo
+Solicitud ||..|{ Resultado
+Estudio }o..|| UnidadDeMedida
+Resultado }o..|| Estudio
+
+@enduml

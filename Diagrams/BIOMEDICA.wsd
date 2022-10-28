@@ -57,6 +57,7 @@ entity Solicitud {
     * id
     --
     * receta
+    * id_paciente
     * id_extraccionista
     * id_estado
     * id_medico

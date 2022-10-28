@@ -20,7 +20,7 @@ entity Telefono {
     * numero
 }
 
-entity Sexo {
+entity Genero {
     * id
     --
     * descripcion
@@ -61,8 +61,8 @@ entity Solicitud {
     * id_extraccionista
     * id_estado
     * id_medico
-    * fecha
-    * hora
+    * fecha_inicio
+    * fecha_finalizacion
     * CAP
 }
 
@@ -87,12 +87,13 @@ entity Metodo {
     * descripcion
 }
 
-entity Resultado {
+entity EstudioSolicitado {
     * id
     --
     * valor_hallado
     * fecha
     * id_estudio
+    * observacion
 }
 
 entity UnidadDeMedida {
@@ -103,15 +104,15 @@ entity UnidadDeMedida {
 
 Paciente ||..|| Domicilio
 Paciente ||..|{ Telefono
-Paciente }o..|| Sexo
+Paciente }o..|| Genero
 Paciente ||..|{ Solicitud
 Solicitud }o..|| Medico
 Solicitud }o..|| Estado
-Resultado ||..o| Muestra
+EstudioSolicitado ||..o| Muestra
 Solicitud }o..|| Extraccionista
 Estudio }o..|| Metodo
-Solicitud }|..|{ Resultado
+Solicitud }|..|{ EstudioSolicitado
 Estudio }o..|| UnidadDeMedida
-Resultado }o..|| Estudio
+EstudioSolicitado }o..|| Estudio
 
 @enduml

@@ -102,6 +102,13 @@ entity UnidadDeMedida {
     * unidad
 }
 
+entity SolicitudYEstudioSolicitado {
+    * id
+    --
+    * id_estudio
+    * id_estudio_solicitado
+}
+
 Paciente ||..|| Domicilio
 Paciente ||..|{ Telefono
 Paciente }o..|| Genero
@@ -111,8 +118,9 @@ Solicitud }o..|| Estado
 EstudioSolicitado ||..o| Muestra
 Solicitud }o..|| Extraccionista
 Estudio }o..|| Metodo
-Solicitud }|..|{ EstudioSolicitado
 Estudio }o..|| UnidadDeMedida
 EstudioSolicitado }o..|| Estudio
+Solicitud .. SolicitudYEstudioSolicitado
+SolicitudYEstudioSolicitado .. EstudioSolicitado
 
 @enduml

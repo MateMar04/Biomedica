@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>567</x>
+      <y>81</y>
+      <w>90</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>Paciente
+--
+numero
+dni
+nombre
+apellido
+id_sexo
+id_domicilio
+id_telefono
+email
+receta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>144</y>
+      <w>90</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Telefono
+--
+id
+--
+numero</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>72</y>
+      <w>90</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Genero
+--
+id
+--
+descripcion
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>216</y>
+      <w>90</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Domicilio
+--
+calle
+altura</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>378</y>
+      <w>90</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Solicitud
+--
+id
+--
+receta
+id_extraccionista
+id_estado
+id_medico
+fecha
+hora
+CAP</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>306</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Extraccionista
+--
+matricula
+--
+nombre
+apellido</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>378</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Resultado
+--
+valor_hallado
+id_estudio
+descripcion</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>522</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Estado
+--
+id
+--
+estado
+descripcion</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>450</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Medico
+--
+id
+--
+matricula
+nombre
+apellido</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>234</y>
+      <w>90</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Estudio
+--
+id
+--
+descripcion
+rango_minimo
+rango_maximo
+id_metodo
+id_muestra
+id_medida</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>81</x>
+      <y>207</y>
+      <w>90</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>Muestra
+--
+id
+--
+descipcion
+fecha</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>81</x>
+      <y>288</y>
+      <w>90</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>Metodo
+--
+id
+--
+descripcion
+nombre</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>81</x>
+      <y>369</y>
+      <w>90</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>UnidadDeMedida
+--
+id
+--
+descripcion
+unidad</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

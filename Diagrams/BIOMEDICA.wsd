@@ -6,13 +6,6 @@ entity Medico {
     * nombre
     * apellido
 }
-entity Receta {
-    * id
-    --
-    * fecha
-    * id_medico
-    * id_paciente
-}
 
 entity Domicilio {
     * id
@@ -27,7 +20,7 @@ entity Telefono {
     * numero
 }
 
-entity Genero {
+entity Sexo {
     * id
     --
     * descripcion
@@ -39,7 +32,7 @@ entity Paciente {
     * dni
     * nombre
     * apellido
-    * id_genero
+    * id_sexo
     * id_domicilio
     * id_telefono
     * email
@@ -63,9 +56,10 @@ entity Estudio {
 entity Solicitud {
     * id
     --
-    * id_receta
+    * receta
     * id_extraccionista
     * id_estado
+    * id_medico
     * fecha
     * hora
     * CAP
@@ -96,6 +90,7 @@ entity Resultado {
     * id
     --
     * valor_hallado
+    * fecha
     * id_estudio
 }
 
@@ -107,15 +102,14 @@ entity UnidadDeMedida {
 
 Paciente ||..|| Domicilio
 Paciente ||..|{ Telefono
-Paciente ||..o{ Receta
-Paciente }o..|| Genero
-Receta }o..|| Medico
-Receta ||..o| Solicitud
+Paciente }o..|| Sexo
+Paciente ||..|{ Solicitud
+Solicitud }o..|| Medico
 Solicitud }o..|| Estado
-Solicitud ||..o| Muestra
+Resultado ||..o| Muestra
 Solicitud }o..|| Extraccionista
 Estudio }o..|| Metodo
-Solicitud ||..|{ Resultado
+Solicitud }|..|{ Resultado
 Estudio }o..|| UnidadDeMedida
 Resultado }o..|| Estudio
 

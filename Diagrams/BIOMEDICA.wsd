@@ -77,7 +77,7 @@ entity Muestra {
     --
     * descripcion
     * fecha
-    * id_solicitud
+    * id_resultado
 }
 
 entity Metodo {

@@ -1,3 +1,5 @@
 /Biomedica/
 /.idea
 /confApp/migrations
+Pipfile
+Pipfile.lock

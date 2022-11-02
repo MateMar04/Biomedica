@@ -1,4 +1,4 @@
-@startuml BIOMEDICA
+@startuml ERDiagram
 entity Medico {
     * id
     --
@@ -20,16 +20,16 @@ entity Telefono {
     * numero
 }
 
-entity Genero {
+entity Sexo {
     * id
     --
     * descripcion
 }
 
 entity Paciente {
-    * numero
+    * id
     --
-    * dni
+    * DNI
     * nombre
     * apellido
     * id_sexo
@@ -61,8 +61,8 @@ entity Solicitud {
     * id_extraccionista
     * id_estado
     * id_medico
-    * fecha_inicio
-    * fecha_finalizacion
+    * fecha
+    * hora
     * CAP
 }
 
@@ -78,7 +78,7 @@ entity Muestra {
     --
     * descripcion
     * fecha
-    * id_resultado
+    * id_solicitud
 }
 
 entity Metodo {
@@ -87,7 +87,7 @@ entity Metodo {
     * descripcion
 }
 
-entity EstudioSolicitado {
+entity Resultado {
     * id
     --
     * valor_hallado
@@ -102,25 +102,17 @@ entity UnidadDeMedida {
     * unidad
 }
 
-entity SolicitudYEstudioSolicitado {
-    * id
-    --
-    * id_estudio
-    * id_estudio_solicitado
-}
-
 Paciente ||..|| Domicilio
 Paciente ||..|{ Telefono
-Paciente }o..|| Genero
+Paciente }o..|| Sexo
 Paciente ||..|{ Solicitud
 Solicitud }o..|| Medico
 Solicitud }o..|| Estado
-EstudioSolicitado ||..o| Muestra
+Resultado ||..o| Muestra
 Solicitud }o..|| Extraccionista
 Estudio }o..|| Metodo
+Solicitud }|..|{ Resultado
 Estudio }o..|| UnidadDeMedida
-EstudioSolicitado }o..|| Estudio
-Solicitud .. SolicitudYEstudioSolicitado
-SolicitudYEstudioSolicitado .. EstudioSolicitado
+Resultado }o..|| Estudio
 
 @enduml

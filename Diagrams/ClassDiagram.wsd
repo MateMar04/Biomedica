@@ -1,0 +1,193 @@
+@startuml ClassDiagram
+
+class Medico {
+    - id : int
+    - matricula : int
+    - nombre : str
+    - apellido  : str
+    --
+    + get_id()
+    + get_matricula()
+    + get_nombre()
+    + get_apellido()
+}
+
+class Domicilio {
+    - id : int
+    - calle : str
+    - altura : int
+    - n_piso : int
+    - departamento : str
+    --
+    + get_id()
+    + get_calle()
+    + get_altura()
+    + get_n_piso()
+    + get_departamento()
+}
+
+class Telefono {
+    - id : int
+    - numero : int
+    --
+    + get_id()
+    + get_numero()
+}
+
+class Sexo {
+    - id : int
+    - nombre : str
+    - descripcion : str
+    --
+    + get_id()
+    + get_nombre()
+    + get_descripcion()
+}
+
+class Paciente {
+    - id : int
+    - n_documento : int
+    - nombre : str
+    - apellido : str
+    - sexo : Sexo
+    - domicilio : Domicilio
+    - telefono : Telefono
+    - email : str
+    --
+    + get_id()
+    + get_DNI()
+    + get_nombre()
+    + get_apellido()
+    + get_sexo()
+    + get_domicilio()
+    + get_telefono()
+    + get_email()
+}
+
+class EstadoDeSolicitud {
+    - id : int
+    - descripcion : str
+    --
+    + get_id()
+    + get_descripcion()
+}
+
+class Estudio {
+    - id : int
+    - descripcion : str
+    - limite_inferior : int
+    - limite_superior : int
+    - metodo : Metodo
+    - unidad_de_medida : UnidadDeMedida
+    --
+    + get_id()
+    + get_descripcion()
+    + get_limite_inferior()
+    + get_limite_superior()
+    + get_rango_de_referencia()
+    + get_metodo()
+    + get_unidad_de_medida()
+
+}
+
+class Solicitud {
+    - id : int
+    - receta : str
+    - paciente : Paciente
+    - extraccionista : Extraccionista
+    - estado : Estado
+    - medico : Medico
+    - fecha_hora_inicio: datetime
+    - fecha_hora_finalizacion: datetime
+    - CAP : str
+    --
+    + get_id()
+    + get_receta()
+    + get_paciente()
+    + get_extraccionista()
+    + get_estado()
+    + get_medico()
+    + get_fecha_hora_inicio()
+    + get_fecha_hora_finalizacion()
+    + get_CAP()
+}
+
+class Extraccionista {
+    - id : int
+    - nombre : str
+    - apellido : str
+    --
+    + get_id()
+    + get_nombre()
+    + get_apellido()
+}
+
+class Muestra {
+    - id : int
+    - descripcion : str
+    - fecha_hora_extraccion : datetime
+    - solicitud : Solicitud
+    --
+    + get_id()
+    + get_descripcion()
+    + get_fecha_extraccion()
+    + get_solicitud()
+}
+
+class Metodo {
+    - id : int
+    - nombre : str
+    - descripcion : str
+    --
+    + get_id()
+    + get_nombre()
+    + get_descripcion()
+}
+
+class Resultado {
+    - id : int
+    - valor_hallado : int
+    - fecha_hora : datetime
+    - estudio : Estudio
+    --
+    + get_id()
+    + get_valor_hallado()
+    + get_fecha()
+    + get_estado()
+}
+
+class UnidadDeMedida {
+    - id : int
+    - descripcion : str
+    - unidad : str
+    --
+    + get_id()
+    + get_descripcion()
+    + get_unidad()
+}
+
+class TipoDeDocumento{
+    - id
+    - nombre
+    - descripcion
+    --
+    + get_id()
+    + get_nombre()
+    + get_descripcion()
+}
+
+Paciente --> "1 " Sexo
+Paciente --> "1..*" Telefono
+Paciente --> "1 " Domicilio
+Paciente --> "1..*  " Solicitud
+Paciente --> "1  " TipoDeDocumento
+Solicitud --> "1  " Extraccionista
+Solicitud --> "   1" Medico
+Solicitud --> "1 " EstadoDeSolicitud
+Solicitud --> "1..*   " Resultado
+Resultado --> "1  " Muestra
+Resultado --> "1..*" Estudio
+Estudio --> "1 " Metodo
+Estudio --> "1  " UnidadDeMedida 
+
+@enduml

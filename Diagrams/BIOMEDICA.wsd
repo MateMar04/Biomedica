@@ -12,6 +12,8 @@ entity Domicilio {
     --
     * calle
     * altura
+    * n_psio
+    * departamento
 }
 
 entity Telefono {
@@ -23,13 +25,14 @@ entity Telefono {
 entity Sexo {
     * id
     --
+    * nombre
     * descripcion
 }
 
 entity Paciente {
     * id
     --
-    * DNI
+    * n_documento
     * nombre
     * apellido
     * id_sexo
@@ -38,7 +41,7 @@ entity Paciente {
     * email
 }
 
-entity Estado {
+entity EstadoDeSolicitud {
     * id
     --
     * descripcion
@@ -48,7 +51,8 @@ entity Estudio {
     * id
     --
     * descripcion
-    * rangos_de_referencias
+    * limite_inferior
+    * limite_superior
     * id_metodo
     * id_unidad_de_medida
 }
@@ -61,8 +65,8 @@ entity Solicitud {
     * id_extraccionista
     * id_estado
     * id_medico
-    * fecha
-    * hora
+    * fecha_hora_inicio
+    * fecha_hora_finalizacion
     * CAP
 }
 
@@ -77,13 +81,14 @@ entity Muestra {
     * id
     --
     * descripcion
-    * fecha
+    * fecha_hora_extraccion
     * id_solicitud
 }
 
 entity Metodo {
     * id
     --
+    * nombre
     * descripcion
 }
 
@@ -100,18 +105,27 @@ entity UnidadDeMedida {
     * id
     --
     * unidad
+    * descripcion
+}
+
+entity TipoDeDocumento {
+    * id
+    --
+    * nombre
+    * descripcion
 }
 
 Paciente ||..|| Domicilio
 Paciente ||..|{ Telefono
 Paciente }o..|| Sexo
 Paciente ||..|{ Solicitud
+Paciente }o..|| TipoDeDocumento
 Solicitud }o..|| Medico
-Solicitud }o..|| Estado
+Solicitud }o..|| EstadoDeSolicitud
 Resultado ||..o| Muestra
 Solicitud }o..|| Extraccionista
 Estudio }o..|| Metodo
-Solicitud }|..|{ Resultado
+Solicitud ||..|{ Resultado
 Estudio }o..|| UnidadDeMedida
 Resultado }o..|| Estudio
 

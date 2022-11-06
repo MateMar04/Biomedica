@@ -149,6 +149,7 @@ class Resultado {
     - valor_hallado : int
     - fecha_hora : datetime
     - estudio : Estudio
+    - observacion : str
     --
     + get_id()
     + get_valor_hallado()

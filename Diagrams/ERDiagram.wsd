@@ -38,12 +38,14 @@ entity Paciente {
     * id_sexo
     * id_domicilio
     * id_telefono
+    * id_tipo_de_documento
     * email
 }
 
 entity EstadoDeSolicitud {
     * id
     --
+    * nombre
     * descripcion
 }
 
@@ -82,7 +84,7 @@ entity Muestra {
     --
     * descripcion
     * fecha_hora_extraccion
-    * id_solicitud
+    * id_resultado
 }
 
 entity Metodo {

@@ -52,6 +52,7 @@ class Paciente {
     - sexo : Sexo
     - domicilio : Domicilio
     - telefono : Telefono
+    - tipo_de_documento : TipoDeDocumento
     - email : str
     --
     + get_id()
@@ -61,14 +62,17 @@ class Paciente {
     + get_sexo()
     + get_domicilio()
     + get_telefono()
+    +get_tipo_de_documento()
     + get_email()
 }
 
 class EstadoDeSolicitud {
     - id : int
+    - nombre : str
     - descripcion : str
     --
     + get_id()
+    + get_nombre()
     + get_descripcion()
 }
 
@@ -126,12 +130,12 @@ class Muestra {
     - id : int
     - descripcion : str
     - fecha_hora_extraccion : datetime
-    - solicitud : Solicitud
+    - resultado : Resultado
     --
     + get_id()
     + get_descripcion()
     + get_fecha_extraccion()
-    + get_solicitud()
+    + get_resultado()
 }
 
 class Metodo {

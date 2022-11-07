@@ -1,4 +1,4 @@
-@startuml BIOMEDICA
+@startuml ERDiagram
 entity Medico {
     * id
     --
@@ -12,6 +12,8 @@ entity Domicilio {
     --
     * calle
     * altura
+    * n_psio
+    * departamento
 }
 
 entity Telefono {
@@ -23,32 +25,37 @@ entity Telefono {
 entity Sexo {
     * id
     --
+    * nombre
     * descripcion
 }
 
 entity Paciente {
-    * numero
+    * id
     --
-    * dni
+    * n_documento
     * nombre
     * apellido
     * id_sexo
     * id_domicilio
     * id_telefono
+    * id_tipo_de_documento
     * email
 }
 
-entity Estado {
+entity EstadoDeSolicitud {
     * id
     --
+    * nombre
     * descripcion
 }
 
 entity Estudio {
     * id
     --
+    * nombre
     * descripcion
-    * rangos_de_referencias
+    * limite_inferior
+    * limite_superior
     * id_metodo
     * id_unidad_de_medida
 }
@@ -57,11 +64,12 @@ entity Solicitud {
     * id
     --
     * receta
+    * id_paciente
     * id_extraccionista
     * id_estado
     * id_medico
-    * fecha
-    * hora
+    * fecha_hora_inicio
+    * fecha_hora_finalizacion
     * CAP
 }
 
@@ -76,13 +84,14 @@ entity Muestra {
     * id
     --
     * descripcion
-    * fecha
-    * id_solicitud
+    * fecha_hora_extraccion
+    * id_resultado
 }
 
 entity Metodo {
     * id
     --
+    * nombre
     * descripcion
 }
 
@@ -92,24 +101,34 @@ entity Resultado {
     * valor_hallado
     * fecha
     * id_estudio
+    * observacion
 }
 
 entity UnidadDeMedida {
     * id
     --
     * unidad
+    * descripcion
+}
+
+entity TipoDeDocumento {
+    * id
+    --
+    * nombre
+    * descripcion
 }
 
 Paciente ||..|| Domicilio
 Paciente ||..|{ Telefono
 Paciente }o..|| Sexo
 Paciente ||..|{ Solicitud
+Paciente }o..|| TipoDeDocumento
 Solicitud }o..|| Medico
-Solicitud }o..|| Estado
+Solicitud }o..|| EstadoDeSolicitud
 Resultado ||..o| Muestra
 Solicitud }o..|| Extraccionista
 Estudio }o..|| Metodo
-Solicitud }|..|{ Resultado
+Solicitud ||..|{ Resultado
 Estudio }o..|| UnidadDeMedida
 Resultado }o..|| Estudio
 

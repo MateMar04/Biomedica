@@ -52,6 +52,7 @@ entity EstadoDeSolicitud {
 entity Estudio {
     * id
     --
+    * nombre
     * descripcion
     * limite_inferior
     * limite_superior

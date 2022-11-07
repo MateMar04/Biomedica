@@ -78,6 +78,7 @@ class EstadoDeSolicitud {
 
 class Estudio {
     - id : int
+    - nombre : str
     - descripcion : str
     - limite_inferior : int
     - limite_superior : int
@@ -85,6 +86,7 @@ class Estudio {
     - unidad_de_medida : UnidadDeMedida
     --
     + get_id()
+    + get_nombre()
     + get_descripcion()
     + get_limite_inferior()
     + get_limite_superior()

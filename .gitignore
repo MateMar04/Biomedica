@@ -1,6 +1,5 @@
 /Biomedica/
 /.idea
-conf/confApp/migrations
 Pipfile
 Pipfile.lock
 conf/__pycache__/

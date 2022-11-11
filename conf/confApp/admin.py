@@ -5,6 +5,7 @@ from .models import EstadoDeSolicitud
 from .models import Estudio
 from .models import Extraccionista
 from .models import Metodo
+from .models import Muestra
 from .models import Paciente
 from .models import Resultado
 from .models import Sexo
@@ -21,6 +22,7 @@ admin.site.register(EstadoDeSolicitud)
 admin.site.register(Estudio)
 admin.site.register(Extraccionista)
 admin.site.register(Metodo)
+admin.site.register(Muestra)
 admin.site.register(Paciente)
 admin.site.register(Resultado)
 admin.site.register(Sexo)

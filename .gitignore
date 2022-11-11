@@ -3,3 +3,5 @@
 conf/confApp/migrations
 Pipfile
 Pipfile.lock
+conf/__pycache__/
+confApp/__pycache__/

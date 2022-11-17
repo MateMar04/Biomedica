@@ -24,5 +24,6 @@ from confApp.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_screen_view, name='home'),
-    path('login/', login_screen_view, name='login')
+    path('login/', login_screen_view, name='login'),
+    path('solicitud/',)
 ]

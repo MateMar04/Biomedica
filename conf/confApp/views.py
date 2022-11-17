@@ -7,3 +7,7 @@ def home_screen_view(request):
 
 def login_screen_view(request):
     return render(request, "login.html")
+
+
+def solicitud_screen_view(request):
+    return render(request, "make_solicitud.html")

@@ -96,6 +96,7 @@ class Paciente(models.Model):
     id_telefono = models.ForeignKey('Telefono', models.DO_NOTHING, db_column='ID_TELEFONO', blank=True, null=True)  # Field name made lowercase.
     id_tipo_de_documento = models.ForeignKey('TipoDeDocumento', models.DO_NOTHING, db_column='ID_TIPO_DE_DOCUMENTO', blank=True, null=True)  # Field name made lowercase.
     email = models.CharField(db_column='EMAIL', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    contraseña = models.CharField(db_column='CONTRASEÑA', max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False

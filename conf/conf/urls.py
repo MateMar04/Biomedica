@@ -18,11 +18,13 @@ from django.urls import path
 
 from confApp.views import (
     home_screen_view,
-    login_screen_view
+    login_screen_view,
+    solicitud_screen_view
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_screen_view, name='home'),
-    path('login/', login_screen_view, name='login')
+    path('login/', login_screen_view, name='login'),
+    path('solicitud/', solicitud_screen_view, name='solicitud')
 ]

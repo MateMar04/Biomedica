@@ -54,3 +54,11 @@ body {
     text-align: center;
   }
 }
+
+.cell {
+  padding: 15px;
+}
+
+.cell-title {
+  font-weight: bold;
+}

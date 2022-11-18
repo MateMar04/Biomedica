@@ -13,7 +13,11 @@ class Domicilio(models.Model):
     calle = models.CharField(db_column='CALLE', max_length=30, blank=True, null=True)  # Field name made lowercase.
     altura = models.IntegerField(db_column='ALTURA', blank=True, null=True)  # Field name made lowercase.
     n_piso = models.IntegerField(db_column='N_PISO', blank=True, null=True)  # Field name made lowercase.
-    departamento = models.CharField(db_column='DEPARTAMENTO', max_length=15, blank=True, null=True)  # Field name made lowercase.
+    departamento = models.CharField(db_column='DEPARTAMENTO', max_length=15, blank=True,
+                                    null=True)  # Field name made lowercase.
+
+    def __str__(self):
+        return f"{self.calle} {self.altura} {self.n_piso} {self.departamento}"
 
     class Meta:
         managed = False
@@ -25,6 +29,9 @@ class EstadoDeSolicitud(models.Model):
     nombre = models.CharField(db_column='NOMBRE', max_length=20, blank=True, null=True)  # Field name made lowercase.
     descripccion = models.TextField(db_column='DESCRIPCCION', blank=True, null=True)  # Field name made lowercase.
 
+    def __str__(self):
+        return self.nombre
+
     class Meta:
         managed = False
         db_table = 'ESTADO_DE_SOLICITUD'
@@ -34,10 +41,18 @@ class Estudio(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(db_column='NOMBRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
     descripccion = models.TextField(db_column='DESCRIPCCION', blank=True, null=True)  # Field name made lowercase.
-    limite_inferior = models.FloatField(db_column='LIMITE_INFERIOR', blank=True, null=True)  # Field name made lowercase.
-    limite_superior = models.FloatField(db_column='LIMITE_SUPERIOR', blank=True, null=True)  # Field name made lowercase.
-    id_metodo = models.ForeignKey('Metodo', models.DO_NOTHING, db_column='ID_METODO', blank=True, null=True)  # Field name made lowercase.
-    id_unidad_de_medida = models.ForeignKey('UnidadDeMedida', models.DO_NOTHING, db_column='ID_UNIDAD_DE_MEDIDA', blank=True, null=True)  # Field name made lowercase.
+    limite_inferior = models.FloatField(db_column='LIMITE_INFERIOR', blank=True,
+                                        null=True)  # Field name made lowercase.
+    limite_superior = models.FloatField(db_column='LIMITE_SUPERIOR', blank=True,
+                                        null=True)  # Field name made lowercase.
+    id_metodo = models.ForeignKey('Metodo', models.DO_NOTHING, db_column='ID_METODO', blank=True,
+                                  null=True)  # Field name made lowercase.
+    id_unidad_de_medida = models.ForeignKey('UnidadDeMedida', models.DO_NOTHING, db_column='ID_UNIDAD_DE_MEDIDA',
+                                            blank=True, null=True)  # Field name made lowercase.
+
+
+    def __str__(self):
+        return self.nombre
 
     class Meta:
         managed = False
@@ -47,7 +62,11 @@ class Estudio(models.Model):
 class Extraccionista(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(db_column='NOMBRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    apellido = models.CharField(db_column='APELLIDO', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    apellido = models.CharField(db_column='APELLIDO', max_length=50, blank=True,
+                                null=True)  # Field name made lowercase.
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
 
     class Meta:
         managed = False
@@ -56,9 +75,14 @@ class Extraccionista(models.Model):
 
 class Medico(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    matricula = models.CharField(db_column='MATRICULA', max_length=13, blank=True, null=True)  # Field name made lowercase.
+    matricula = models.CharField(db_column='MATRICULA', max_length=13, blank=True,
+                                 null=True)  # Field name made lowercase.
     nombre = models.CharField(db_column='NOMBRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    apellido = models.CharField(db_column='APELLIDO', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    apellido = models.CharField(db_column='APELLIDO', max_length=50, blank=True,
+                                null=True)  # Field name made lowercase.
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
 
     class Meta:
         managed = False
@@ -70,6 +94,9 @@ class Metodo(models.Model):
     nombre = models.CharField(db_column='NOMBRE', max_length=30, blank=True, null=True)  # Field name made lowercase.
     descripccion = models.TextField(db_column='DESCRIPCCION', blank=True, null=True)  # Field name made lowercase.
 
+    def __str__(self):
+        return self.nombre
+
     class Meta:
         managed = False
         db_table = 'METODO'
@@ -78,8 +105,12 @@ class Metodo(models.Model):
 class Muestra(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     descripccion = models.TextField(db_column='DESCRIPCCION', blank=True, null=True)  # Field name made lowercase.
-    fecha_hora_extraccion = models.DateTimeField(db_column='FECHA_HORA_EXTRACCION', blank=True, null=True)  # Field name made lowercase.
-    id_resultado = models.ForeignKey('Resultado', models.DO_NOTHING, db_column='ID_RESULTADO', blank=True, null=True)  # Field name made lowercase.
+    fecha_hora_extraccion = models.DateTimeField(db_column='FECHA_HORA_EXTRACCION', blank=True,
+                                                 null=True)  # Field name made lowercase.
+    id_resultado = models.ForeignKey('Resultado', models.DO_NOTHING, db_column='ID_RESULTADO', blank=True,
+                                     null=True)  # Field name made lowercase.
+
+
 
     class Meta:
         managed = False
@@ -90,13 +121,21 @@ class Paciente(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     n_documento = models.IntegerField(db_column='N_DOCUMENTO', blank=True, null=True)  # Field name made lowercase.
     nombre = models.CharField(db_column='NOMBRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    apellido = models.CharField(db_column='APELLIDO', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    id_sexo = models.ForeignKey('Sexo', models.DO_NOTHING, db_column='ID_SEXO', blank=True, null=True)  # Field name made lowercase.
-    id_domicilio = models.ForeignKey(Domicilio, models.DO_NOTHING, db_column='ID_DOMICILIO', blank=True, null=True)  # Field name made lowercase.
-    id_telefono = models.ForeignKey('Telefono', models.DO_NOTHING, db_column='ID_TELEFONO', blank=True, null=True)  # Field name made lowercase.
-    id_tipo_de_documento = models.ForeignKey('TipoDeDocumento', models.DO_NOTHING, db_column='ID_TIPO_DE_DOCUMENTO', blank=True, null=True)  # Field name made lowercase.
+    apellido = models.CharField(db_column='APELLIDO', max_length=50, blank=True,
+                                null=True)  # Field name made lowercase.
+    id_sexo = models.ForeignKey('Sexo', models.DO_NOTHING, db_column='ID_SEXO', blank=True,
+                                null=True)  # Field name made lowercase.
+    id_domicilio = models.ForeignKey(Domicilio, models.DO_NOTHING, db_column='ID_DOMICILIO', blank=True,
+                                     null=True)  # Field name made lowercase.
+    id_telefono = models.ForeignKey('Telefono', models.DO_NOTHING, db_column='ID_TELEFONO', blank=True,
+                                    null=True)  # Field name made lowercase.
+    id_tipo_de_documento = models.ForeignKey('TipoDeDocumento', models.DO_NOTHING, db_column='ID_TIPO_DE_DOCUMENTO',
+                                             blank=True, null=True)  # Field name made lowercase.
     email = models.CharField(db_column='EMAIL', max_length=100, blank=True, null=True)  # Field name made lowercase.
     contraseña = models.CharField(db_column='CONTRASEÑA', max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
 
     class Meta:
         managed = False
@@ -107,9 +146,13 @@ class Resultado(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     valor_hallado = models.FloatField(db_column='VALOR_HALLADO', blank=True, null=True)  # Field name made lowercase.
     fecha = models.DateField(db_column='FECHA', blank=True, null=True)  # Field name made lowercase.
-    id_estudio = models.ForeignKey(Estudio, models.DO_NOTHING, db_column='ID_ESTUDIO', blank=True, null=True)  # Field name made lowercase.
+    id_estudio = models.ForeignKey(Estudio, models.DO_NOTHING, db_column='ID_ESTUDIO', blank=True,
+                                   null=True)  # Field name made lowercase.
     observacion = models.TextField(db_column='OBSERVACION', blank=True, null=True)  # Field name made lowercase.
 
+
+    def __str__(self):
+        return f"{self.valor_hallado}"
     class Meta:
         managed = False
         db_table = 'RESULTADO'
@@ -120,6 +163,9 @@ class Sexo(models.Model):
     nombre = models.CharField(db_column='NOMBRE', max_length=15, blank=True, null=True)  # Field name made lowercase.
     descripccion = models.TextField(db_column='DESCRIPCCION', blank=True, null=True)  # Field name made lowercase.
 
+    def __str__(self):
+        return self.nombre
+
     class Meta:
         managed = False
         db_table = 'SEXO'
@@ -128,12 +174,18 @@ class Sexo(models.Model):
 class Solicitud(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     receta = models.CharField(db_column='RECETA', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    id_paciente = models.ForeignKey(Paciente, models.DO_NOTHING, db_column='ID_PACIENTE', blank=True, null=True)  # Field name made lowercase.
-    id_extraccionista = models.ForeignKey(Extraccionista, models.DO_NOTHING, db_column='ID_EXTRACCIONISTA', blank=True, null=True)  # Field name made lowercase.
-    id_estado = models.ForeignKey(EstadoDeSolicitud, models.DO_NOTHING, db_column='ID_ESTADO', blank=True, null=True)  # Field name made lowercase.
-    id_medico = models.ForeignKey(Medico, models.DO_NOTHING, db_column='ID_MEDICO', blank=True, null=True)  # Field name made lowercase.
-    fecha_hora_inicio = models.DateTimeField(db_column='FECHA_HORA_INICIO', blank=True, null=True)  # Field name made lowercase.
-    fecha_hora_finalizacion = models.DateTimeField(db_column='FECHA_HORA_FINALIZACION', blank=True, null=True)  # Field name made lowercase.
+    id_paciente = models.ForeignKey(Paciente, models.DO_NOTHING, db_column='ID_PACIENTE', blank=True,
+                                    null=True)  # Field name made lowercase.
+    id_extraccionista = models.ForeignKey(Extraccionista, models.DO_NOTHING, db_column='ID_EXTRACCIONISTA', blank=True,
+                                          null=True)  # Field name made lowercase.
+    id_estado = models.ForeignKey(EstadoDeSolicitud, models.DO_NOTHING, db_column='ID_ESTADO', blank=True,
+                                  null=True)  # Field name made lowercase.
+    id_medico = models.ForeignKey(Medico, models.DO_NOTHING, db_column='ID_MEDICO', blank=True,
+                                  null=True)  # Field name made lowercase.
+    fecha_hora_inicio = models.DateTimeField(db_column='FECHA_HORA_INICIO', blank=True,
+                                             null=True)  # Field name made lowercase.
+    fecha_hora_finalizacion = models.DateTimeField(db_column='FECHA_HORA_FINALIZACION', blank=True,
+                                                   null=True)  # Field name made lowercase.
     cap = models.CharField(db_column='CAP', max_length=8, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -145,6 +197,9 @@ class Telefono(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     numero = models.BigIntegerField(db_column='NUMERO', blank=True, null=True)  # Field name made lowercase.
 
+    def __str__(self):
+        return f"{self.numero}"
+
     class Meta:
         managed = False
         db_table = 'TELEFONO'
@@ -155,6 +210,9 @@ class TipoDeDocumento(models.Model):
     nombre = models.CharField(db_column='NOMBRE', max_length=15, blank=True, null=True)  # Field name made lowercase.
     descripcion = models.TextField(db_column='DESCRIPCION', blank=True, null=True)  # Field name made lowercase.
 
+    def __str__(self):
+        return self.nombre
+
     class Meta:
         managed = False
         db_table = 'TIPO_DE_DOCUMENTO'
@@ -164,6 +222,9 @@ class UnidadDeMedida(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     unidad = models.CharField(db_column='UNIDAD', max_length=15, blank=True, null=True)  # Field name made lowercase.
     descripcion = models.TextField(db_column='DESCRIPCION', blank=True, null=True)  # Field name made lowercase.
+
+    def __str__(self):
+        return self.unidad
 
     class Meta:
         managed = False

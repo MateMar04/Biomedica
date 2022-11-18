@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 {% load static%}
 <html lang="es" dir="ltr">
@@ -29,30 +30,30 @@
       <section class="section sign-up">
 <form class="form" id="a-form" method="" action="">
           <h2 class="form_title title">Create Account</h2>
-          <input class="forminput" type="text" placeholder="Nombre">
-          <input class="forminput" type="text" placeholder="Apellido">
-          <select class="forminput" name="Tipo de Documento">
+          <input class="custom-border-form" type="text" placeholder="Nombre">
+          <input class="custom-border-form" type="text" placeholder="Apellido">
+          <select class="custom-border-select" name="Tipo de Documento">
             <option disabled selected value="">Tipo de Documento</option>
             <option value="DNI">DNI</option>
             <option value="CUIL">CUIL</option>
             <option value="Pasaporte">Pasaporte</option>
           </select>
-          <input class="forminput" type="number" placeholder="N° Documento">
-          <select class="forminput" name="Sexo">
+          <input class="custom-border-form" type="number" placeholder="N° Documento">
+          <select class="custom-border-select" name="Sexo">
             <option disabled selected value="">Seleccione su Sexo</option>
             <option value="DNI">Masculino</option>
             <option value="CUIL">Femenino</option>
             <option value="Pasaporte">Otro</option>
           </select>
-          <input class="forminput" type="text" placeholder="Calle">
-          <input class="forminput" type="number" placeholder="Altura">
-          <input class="forminput" type="text" placeholder="N° Piso ">
-          <input class="form__input" type="text" placeholder="Departamento">
-          <input class="forminput" type="tel" placeholder="Telefono">
-          <input class="forminput" type="text" placeholder="Email">
-          <input class="forminput" type="password" placeholder="Contraseña">
-          <input class="forminput" type="password" placeholder="Repetir contraseña">
-          <button>Create Account</button>
+          <input class="custom-border-form" type="text" placeholder="Calle">
+          <input class="custom-border-form" type="number" placeholder="Altura">
+          <input class="custom-border-form" type="text" placeholder="N° Piso ">
+          <input class="custom-border-form" type="text" placeholder="Departamento">
+          <input class="custom-border-form"  type="tel" placeholder="Telefono">
+          <input class="custom-border-form" type="text" placeholder="Email">
+          <input class="custom-border-select" type="password" placeholder="Contraseña">
+          <input class="custom-border-select" type="password" placeholder="Repetir contraseña">
+          <button class="nav-link custom-btn custom-border-btn btn inactive">Create Account</button>
           <p class="opposite-btn2">Already have an account?</p>
         </form>
 
@@ -61,9 +62,9 @@
       <!--  Sign In  -->
       <section class="section sign-in">
         <form action="">
-          <input type="text" name="email" placeholder="Email">
-          <input type="password" name="password" placeholder="Password">
-          <button>Sign In</button>
+          <input class="custom-border-form" type="text" name="email" placeholder="Email">
+          <input class="custom-border-select" type="password" name="password" placeholder="Password">
+          <button class="nav-link custom-btn custom-border-btn btn inactive">Sign In</button>
           <p class="opposite-btn1">Don't have an account?</p>
         </form>
       </section>

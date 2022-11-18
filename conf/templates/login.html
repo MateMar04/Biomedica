@@ -1,72 +1,75 @@
-{% load static%}
 
 <!DOCTYPE html>
+{% load static%}
 <html lang="es" dir="ltr">
   <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
     <link href="{%static 'css/login.css'%}" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/bootstrap-icons.css'%}" rel="stylesheet">
     <link href="{%static 'css/templatemo-kind-heart-charity.css'%}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Biomedical</title>
     <link rel="shortcut icon" href="{%static 'images/logopage.png'%}">
-    <a class="nav-link custom-btn custom-border-btn btn inactive" href="http://127.0.0.1:8000/" id="mybutton">Home</a>
-  </head>
-  <body>
-      <div class="main">
-      <div class="container a-container" id="a-container">
-        <form class="form" id="a-form" method="" action="">
+ </head>
+<html>
+<body>
+
+        {% include 'header.html' %}
+
+<div class="wrapper">
+    <header class="section header">
+
+      <div class="header__text">
+        <p>Log in or create a new account.</p>
+      </div>
+    </header>
+
+      <!--  Sign Up  -->
+      <section class="section sign-up">
+<form class="form" id="a-form" method="" action="">
           <h2 class="form_title title">Create Account</h2>
-          <input class="form__input" type="text" placeholder="Nombre">
-          <input class="form__input" type="text" placeholder="Apellido">
-          <select class="form__input" name="Tipo de Documento">
-            <option disabled selected value="">Seleccione tipo de Documento</option>
+          <input class="custom-border-form" type="text" placeholder="Nombre">
+          <input class="custom-border-form" type="text" placeholder="Apellido">
+          <select class="custom-border-select" name="Tipo de Documento">
+            <option disabled selected value="">Tipo de Documento</option>
             <option value="DNI">DNI</option>
             <option value="CUIL">CUIL</option>
             <option value="Pasaporte">Pasaporte</option>
           </select>
-          <input class="form__input" type="number" placeholder="N° Documento">
-          <select class="form__input" name="Sexo">
+          <input class="custom-border-form" type="number" placeholder="N° Documento">
+          <select class="custom-border-select" name="Sexo">
             <option disabled selected value="">Seleccione su Sexo</option>
             <option value="DNI">Masculino</option>
             <option value="CUIL">Femenino</option>
             <option value="Pasaporte">Otro</option>
           </select>
-          <input class="form__input" type="text" placeholder="Calle">
-          <input class="form__input" type="number" placeholder="Altura">
-          <input class="form__input" type="text" placeholder="N° Piso *">
-          <input class="form__input" type="text" placeholder="Departamento *">
-          <input class="form__input" type="tel" placeholder="Telefono">
-          <input class="form__input" type="text" placeholder="Email">
-          <input class="form__input" type="password" placeholder="Contraseña">
-          <input class="form__input" type="password" placeholder="Repetir contraseña">
-          <button class="nav-link custom-btn custom-border-btn btn inactive form__button button submit">SIGN UP</button>
+          <input class="custom-border-form" type="text" placeholder="Calle">
+          <input class="custom-border-form" type="number" placeholder="Altura">
+          <input class="custom-border-form" type="text" placeholder="N° Piso ">
+          <input class="custom-border-form" type="text" placeholder="Departamento">
+          <input class="custom-border-form"  type="tel" placeholder="Telefono">
+          <input class="custom-border-form" type="text" placeholder="Email">
+          <input class="custom-border-select" type="password" placeholder="Contraseña">
+          <input class="custom-border-select" type="password" placeholder="Repetir contraseña">
+          <button class="nav-link custom-btn custom-border-btn btn inactive">Create Account</button>
+          <p class="opposite-btn2">Already have an account?</p>
         </form>
-      </div>
-      <div class="container b-container" id="b-container">
-        <form class="form" id="b-form" method="" action="">
-          <h2 class="form_title title">Sign in to Website</h2>
-          <span class="form__span">or use your email account</span>
-          <input class="form__input" type="text" placeholder="Email">
-          <input class="form__input" type="password" placeholder="Password"><a class="form__link">Forgot your password?</a>
-          <button class="nav-link custom-btn custom-border-btn btn inactive form__button button submit">SIGN IN</button>
+
+      </section>
+
+      <!--  Sign In  -->
+      <section class="section sign-in">
+        <form action="">
+          <input class="custom-border-form" type="text" name="email" placeholder="Email">
+          <input class="custom-border-select" type="password" name="password" placeholder="Password">
+          <button class="nav-link custom-btn custom-border-btn btn inactive">Sign In</button>
+          <p class="opposite-btn1">Don't have an account?</p>
         </form>
-      </div>
-      <div class="switch" id="switch-cnt">
-        <div class="switch__circle"></div>
-        <div class="switch__circle switch__circle--t"></div>
-        <div class="switch__container" id="switch-c1">
-          <h2 class="switch__title title">Welcome Back !</h2>
-          <p class="switch__description description">To keep connected with us please login with your personal info</p>
-          <button class="nav-link custom-btn custom-border-btn btn inactive switch__button button switch-btn">SIGN IN</button>
-        </div>
-        <div class="switch__container is-hidden" id="switch-c2">
-          <h2 class="switch__title title">Hello Friend !</h2>
-          <p class="switch__description description">Enter your personal details and start journey with us</p>
-          <button class="nav-link custom-btn custom-border-btn btn inactive switch__button button switch-btn">SIGN UP</button>
-        </div>
-      </div>
-    </div>
-    <script src="{%static 'js/login.js'%}"></script>
-  </body>
+      </section>
+  </div>
+
+  <script src="{%static 'js/login.js'%}"></script>
+</body>
 </html>

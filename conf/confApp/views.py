@@ -11,3 +11,7 @@ def login_screen_view(request):
 
 def solicitud_screen_view(request):
     return render(request, "make_solicitud.html")
+
+
+def resultado_screen_view(request):
+    return render(request, "resultado.html")

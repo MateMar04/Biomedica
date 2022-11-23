@@ -34,7 +34,11 @@
                 <option disabled selected value="">Seleccione un Paciente</option>
                 <option>Paciente 1</option>
             </select>
-            <select class="custom-border-select" name="Extraccionista">
+            <input disabled class="custom-border-form" type="text" placeholder="ID Paciente">
+            <input class="custom-border-form" type="text" placeholder="Nombre">
+            <input class="custom-border-form" type="text" placeholder="Apellido">
+            <input class="custom-border-form" type="text" placeholder="Email">
+            <select disabled class="custom-border-select" name="Extraccionista">
                 <option disabled selected value="">Seleccione un Extraccionista</option>
                 <option>Extraciconista 1</option>
             </select>
@@ -42,7 +46,15 @@
                 <option disabled selected value="">Seleccione un Medico</option>
                 <option>Medico 1</option>
             </select>
+
+            <div>
+                <label for="Estudio1"> Estudio 1</label>
+                <input class="custom-border-form" type="checkbox" id="Estudio1">
+            </div>
+
+            <button class="nav-link custom-btn custom-border-btn btn inactive">Modificar datos</button>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Relaizar Solicitud</button>
+
         </form>
     </section>
 </div>

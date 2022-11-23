@@ -5,7 +5,7 @@ def home_screen_view(request):
     return render(request, "index.html")
 
 
-def login_screen_view(request):
+def paciente_screen_view(request):
     return render(request, "create_paciente.html")
 
 
@@ -15,3 +15,7 @@ def solicitud_screen_view(request):
 
 def resultado_screen_view(request):
     return render(request, "resultado.html")
+
+
+def medico_screen_view(request):
+    return render(request, "create_medico.html")

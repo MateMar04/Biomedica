@@ -1,43 +1,53 @@
-{% load static%}
-
+<!DOCTYPE html>
+{% load static %}
 <html lang="es" dir="ltr">
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
-    <link href="{%static 'css/make_solicitud.css'%}" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
-    <link href="{%static 'css/templatemo-kind-heart-charity.css'%}" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Biomedical</title>
-    <link rel="shortcut icon" href="{%static 'images/logopage.png'%}">
-  </head>
-  <body>
-      <div class="main">
+    <link rel="shortcut icon" href="{% static 'images/logopage.png' %}">
+</head>
+<html>
+<body>
+
+{% include 'header.html' %}
+
+<div class="wrapper">
+    <header class="section header">
+
+        <div class="header__text">
+            <p>Realiza una nueva Solicitud</p>
+        </div>
+    </header>
+
+    <section class="section sign-up" style="display: block">
         <form class="form" id="a-form" method="" action="">
-          <a class="nav-link custom-btn custom-border-btn btn inactive" href="http://127.0.0.1:8000/">HOME</a>
-          <h2 class="form_title title">Generar Solicitud</h2>
-          <input class="form__input" type="file" placeholder="Receta">
-          <select class="form__input" name="Extraccionista">
-            <option disabled selected value="">Seleccione extraccionista</option>
-          </select>
-          <select class="form__input" name="Medico">
-            <option disabled selected value="">Seleccione medico</option>
-          </select>
-          <div>
-            <div>
-              <input name="Estudio" type="checkbox" id="estudio1">
-            <label for="estudio1">Estudio 1</label>
-            </div>
-            <div>
-              <input name="Estudio" type="checkbox" id="estudio2">
-            <label for="estudio2">Estudio 2</label>
-            </div>
-            <div>
-              <input name="Estudio" type="checkbox" id="estudio3">
-            <label for="estudio3">Estudio 3</label>
-            </div>
-          </div>
-          <button class="nav-link custom-btn custom-border-btn btn inactive form__button button submit">GENERAR</button>
+            <h2 class="form_title title">Realiza una Solicitud</h2>
+            <input class="custom-border-form" type="file" placeholder="Receta">
+            <input class="custom-border-form" type="date" placeholder="Fecha de la Receta">
+            <select class="custom-border-select" name="Paciente">
+                <option disabled selected value="">Seleccione un Paciente</option>
+                <option>Paciente 1</option>
+            </select>
+            <select class="custom-border-select" name="Extraccionista">
+                <option disabled selected value="">Seleccione un Extraccionista</option>
+                <option>Extraciconista 1</option>
+            </select>
+            <select class="custom-border-select" name="Medico">
+                <option disabled selected value="">Seleccione un Medico</option>
+                <option>Medico 1</option>
+            </select>
+            <button class="nav-link custom-btn custom-border-btn btn inactive">Relaizar Solicitud</button>
         </form>
-      </div>
-  </body>
+    </section>
+</div>
+
+<script src="{% static 'js/signup.js' %}"></script>
+</body>
 </html>

@@ -1,95 +1,107 @@
-
 @import url('https://fonts.googleapis.com/css?family=Nunito:300');
 
- body {
-	 margin: 0;
-	 padding-bottom: 20px;
-	 font-family: 'Nunito', sans-serif;
-	 color: white;
-     background: rgb(55,55,55);
+body {
+    margin: 0;
+    padding-bottom: 20px;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+    background: rgb(55, 55, 55);
 }
-.wrapper{
+
+.wrapper {
     background-color: #ecf0f3;
     position: relative;
-    width:30%;
+    width: 30%;
     margin: 50px auto;
     padding: 20px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
- .header {
-	 position: relative;
-	 text-align: center;
+
+.header {
+    position: relative;
+    text-align: center;
 
 }
-header h1{
-  	color:#b61818;
+
+header h1 {
+    color: #b61818;
 }
- form {
-	 margin: 0 auto;
-	 max-width: 16rem;
-	 overflow: auto;
-	 border-radius: 10px;
-	 border-width: 3px;
+
+form {
+    margin: 0 auto;
+    max-width: 16rem;
+    overflow: auto;
+    border-radius: 10px;
+    border-width: 3px;
 }
- form > * + * {
-	 margin-top: 1rem;
+
+form > * + * {
+    margin-top: 1rem;
 }
- form > input {
-	 border: 0;
-	 border-bottom: 1px rgb(55,55,55);
-	 border-radius: 3px;
-	 width: 100%;
-	 height: 2rem;
-	 padding: 0 0 0.25rem 0;
-	 font-size: .8rem;
-	 color: rgb(55,55,55);
-	 background: transparent;
+
+form > input {
+    border: 0;
+    border-bottom: 1px rgb(55, 55, 55);
+    border-radius: 3px;
+    width: 100%;
+    height: 2rem;
+    padding: 0 0 0.25rem 0;
+    font-size: .8rem;
+    color: rgb(55, 55, 55);
+    background: transparent;
 }
- form > input:focus {
-	 outline: none;
+
+form > input:focus {
+    outline: none;
 }
- form > input::placeholder {
-	 color: rgb(55,55,55);
+
+form > input::placeholder {
+    color: rgb(55, 55, 55);
 }
- form > button {
-	 margin-top: 2rem;
-	 border: 0;
-	 border-radius: 200px;
-	 width: 100%;
-	 padding: 0.85rem;
-	 font-size: 1rem;
-	 color: #000;
-	 background: rgb(55,55,55);
+
+form > button {
+    margin-top: 2rem;
+    border: 0;
+    border-radius: 200px;
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 1rem;
+    color: #000;
+    background: rgb(55, 55, 55);
 }
- form > button:focus {
-	 outline: none;
+
+form > button:focus {
+    outline: none;
 }
- form > p {
-	 text-align: center;
-	 color: rgb(55,55,55);
+
+form > p {
+    text-align: center;
+    color: rgb(55, 55, 55);
 }
- .sign-up {
-	 display: none;
+
+.sign-up {
+    display: none;
 }
- .opposite-btn1, .opposite-btn2 {
-	 cursor: pointer;
+
+.opposite-btn1, .opposite-btn2 {
+    cursor: pointer;
 }
 
 .custom-border-form {
-	margin-top: 3px;
-  	background: transparent;
-  	border: 1px solid var(--custom-btn-bg-color);
-  	border-radius:5px;
-  	color: rgb(55,55,55);
-	padding-left: 3px;
+    margin-top: 3px;
+    background: transparent;
+    border: 1px solid var(--custom-btn-bg-color);
+    border-radius: 5px;
+    color: rgb(55, 55, 55);
+    padding-left: 3px;
 }
 
 .custom-border-select {
-	margin-top: 3px;
-  	background: transparent;
-  	border: 1px solid var(--custom-btn-bg-color);
-  	border-radius:5px;
-  	color: rgb(55,55,55);
-	padding-left: 3px;
+    margin-top: 3px;
+    background: transparent;
+    border: 1px solid var(--custom-btn-bg-color);
+    border-radius: 5px;
+    color: rgb(55, 55, 55);
+    padding-left: 3px;
 }

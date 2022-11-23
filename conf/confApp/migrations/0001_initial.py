@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -93,7 +92,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(db_column='ID', primary_key=True, serialize=False)),
                 ('descripccion', models.TextField(blank=True, db_column='DESCRIPCCION', null=True)),
-                ('fecha_hora_extraccion', models.DateTimeField(blank=True, db_column='FECHA_HORA_EXTRACCION', null=True)),
+                ('fecha_hora_extraccion',
+                 models.DateTimeField(blank=True, db_column='FECHA_HORA_EXTRACCION', null=True)),
             ],
             options={
                 'db_table': 'MUESTRA',
@@ -146,7 +146,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(db_column='ID', primary_key=True, serialize=False)),
                 ('receta', models.CharField(blank=True, db_column='RECETA', max_length=100, null=True)),
                 ('fecha_hora_inicio', models.DateTimeField(blank=True, db_column='FECHA_HORA_INICIO', null=True)),
-                ('fecha_hora_finalizacion', models.DateTimeField(blank=True, db_column='FECHA_HORA_FINALIZACION', null=True)),
+                ('fecha_hora_finalizacion',
+                 models.DateTimeField(blank=True, db_column='FECHA_HORA_FINALIZACION', null=True)),
                 ('cap', models.CharField(blank=True, db_column='CAP', max_length=8, null=True)),
             ],
             options={

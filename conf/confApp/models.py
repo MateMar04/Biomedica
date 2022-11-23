@@ -50,7 +50,6 @@ class Estudio(models.Model):
     id_unidad_de_medida = models.ForeignKey('UnidadDeMedida', models.DO_NOTHING, db_column='ID_UNIDAD_DE_MEDIDA',
                                             blank=True, null=True)  # Field name made lowercase.
 
-
     def __str__(self):
         return self.nombre
 
@@ -110,8 +109,6 @@ class Muestra(models.Model):
     id_resultado = models.ForeignKey('Resultado', models.DO_NOTHING, db_column='ID_RESULTADO', blank=True,
                                      null=True)  # Field name made lowercase.
 
-
-
     class Meta:
         managed = False
         db_table = 'MUESTRA'
@@ -150,9 +147,9 @@ class Resultado(models.Model):
                                    null=True)  # Field name made lowercase.
     observacion = models.TextField(db_column='OBSERVACION', blank=True, null=True)  # Field name made lowercase.
 
-
     def __str__(self):
         return f"{self.valor_hallado}"
+
     class Meta:
         managed = False
         db_table = 'RESULTADO'

@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Medico
+
 from .models import Domicilio
 from .models import EstadoDeSolicitud
 from .models import Estudio
 from .models import Extraccionista
+from .models import Medico
 from .models import Metodo
 from .models import Muestra
 from .models import Paciente

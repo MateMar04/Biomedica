@@ -1,55 +1,54 @@
-{% load static%}
+{% load static %}
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>Biomedical</title>
-        <link rel="shortcut icon" href="{%static 'images/logopage.png'%}">
+    <title>Biomedical</title>
+    <link rel="shortcut icon" href="{% static 'images/logopage.png' %}">
 
-        <!-- CSS FILES -->        
-        <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- CSS FILES -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
-        <link href="{%static 'css/bootstrap-icons.css'%}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
-        <link href="{%static 'css/templatemo-kind-heart-charity.css'%}" rel="stylesheet">
-    </head>
-    
-    <body id="section_1">
+    <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+</head>
 
-        {% include 'header.html' %}
+<body id="section_1">
 
-        <main>
+{% include 'header.html' %}
 
-            {% include 'carousel_hero.html' %}
+<main>
 
-            {% include 'our_story.html' %}
-  
-            {% include 'news.html' %}
+    {% include 'carousel_hero.html' %}
 
-            {% include 'happy_customer.html' %}
+    {% include 'our_story.html' %}
 
-            {% include 'carousel_developers.html' %}
+    {% include 'news.html' %}
 
-            {% include 'contact_form.html' %}
+    {% include 'happy_customer.html' %}
+
+    {% include 'carousel_developers.html' %}
+
+    {% include 'contact_form.html' %}
 
 
-            
-        </main>
+</main>
 
-        {% include 'footer.html' %}
+{% include 'footer.html' %}
 
-        <!-- JAVASCRIPT FILES -->
-        <script src="{%static 'js/jquery.min.js'%}"></script>
-        <script src="{%static 'js/bootstrap.min.js'%}"></script>
-        <script src="{%static 'js/jquery.sticky.js'%}"></script>
-        <script src="{%static 'js/click-scroll.js'%}"></script>
-        <script src="{%static 'js/counter.js'%}"></script>
-        <script src="{%static 'js/custom.js'%}"></script>
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/click-scroll.js' %}"></script>
+<script src="{% static 'js/counter.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 
-    </body>
+</body>
 </html>

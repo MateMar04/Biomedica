@@ -33,13 +33,16 @@
             <input class="custom-border-form" type="text" placeholder="Apellido *">
             <select class="custom-border-select" name="Tipo de Documento">
                 <option disabled selected value="">Tipo de Documento</option>
-                {% for i in tipo %}
-                <option  value="{{ i.nombre }}"> {{ i.nombre }}</option>
+                {% for t in tipo %}
+                <option  value="{{ t.nombre }}"> {{ t.nombre }}</option>
                 {% endfor %}
             </select>
             <input class="custom-border-form" type="number" placeholder="N° Documento *">
             <select class="custom-border-select" name="Sexo">
                 <option disabled selected value="">Seleccione su Sexo</option>
+                {% for s in sexo %}
+                <option  value="{{ s.nombre }}"> {{ s.nombre }}</option>
+                {% endfor %}
             </select>
             <input class="custom-border-form" type="text" placeholder="Calle *">
             <input class="custom-border-form" type="number" placeholder="Altura *">

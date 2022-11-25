@@ -27,12 +27,12 @@
 
     <!--  Sign Up  -->
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="post" action="">
+        <form class="form" id="a-form" method="post" action="{% url 'registrarPaciente' %}">
             {% csrf_token %}
             <h2 class="form_title title">Registar un Paciente</h2>
             <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
             <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
-            <select class="custom-border-select" name="Tipo de Documento" name="tipo_documento">
+            <select class="custom-border-select" name="tipo_documento">
                 <option disabled selected value="">Tipo de Documento</option>
                 {% for t in tipo %}
                     <option value="{{ t.id }}"> {{ t.nombre }}</option>

@@ -78,13 +78,13 @@ class MuestraAdmin(admin.ModelAdmin):
 class PacienteAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'n_documento', 'nombre', 'apellido', 'id_sexo', 'id_domicilio', 'id_telefono', 'id_tipo_de_documento',
-        'email', 'contraseña',)
+        'email',)
     search_fields = (
         'id', 'n_documento', 'nombre', 'apellido', 'id_sexo', 'id_domicilio', 'id_telefono', 'id_tipo_de_documento',
-        'email', 'contraseña',)
+        'email',)
     list_filter = (
         'id', 'n_documento', 'nombre', 'apellido', 'id_sexo', 'id_domicilio', 'id_telefono', 'id_tipo_de_documento',
-        'email', 'contraseña',)
+        'email',)
     list_per_page = 10
 
 

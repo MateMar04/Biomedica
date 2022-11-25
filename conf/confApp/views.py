@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Medico, TipoDeDocumento, Sexo
+from .models import Medico, TipoDeDocumento, Sexo, Paciente
 
 
 def home_screen_view(request):
@@ -28,5 +28,11 @@ def medico_screen_view(request):
 def registrar_medico(request):
     print(f"---{request.POST}---")
     medico = Medico.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
+                                   matricula=request.POST['matricula'])
+    return render(request, "succesfull.html")
+
+def registrar_paciente(request):
+    print(f"---{request.POST}---")
+    paciente = Paciente.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
                                    matricula=request.POST['matricula'])
     return render(request, "succesfull.html")

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Medico
+from .models import Medico, TipoDeDocumento
 
 
 def home_screen_view(request):
@@ -8,7 +8,8 @@ def home_screen_view(request):
 
 
 def paciente_screen_view(request):
-    return render(request, "create_paciente.html")
+    tipo_de_documento = TipoDeDocumento.objects.all()
+    return render(request, "create_paciente.html", context={"tipo": tipo_de_documento})
 
 
 def solicitud_screen_view(request):

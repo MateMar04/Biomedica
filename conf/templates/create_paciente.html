@@ -27,22 +27,19 @@
 
     <!--  Sign Up  -->
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="" action="">
+        <form class="form" id="a-form" method="post" action="">
             <h2 class="form_title title">Registar un Paciente</h2>
             <input class="custom-border-form" type="text" placeholder="Nombre *">
             <input class="custom-border-form" type="text" placeholder="Apellido *">
             <select class="custom-border-select" name="Tipo de Documento">
                 <option disabled selected value="">Tipo de Documento</option>
-                <option value="DNI">DNI</option>
-                <option value="CUIL">CUIL</option>
-                <option value="Pasaporte">Pasaporte</option>
+                {% for i in tipo %}
+                <option  value="{{ i.nombre }}"> {{ i.nombre }}</option>
+                {% endfor %}
             </select>
             <input class="custom-border-form" type="number" placeholder="N° Documento *">
             <select class="custom-border-select" name="Sexo">
                 <option disabled selected value="">Seleccione su Sexo</option>
-                <option value="DNI">Masculino</option>
-                <option value="CUIL">Femenino</option>
-                <option value="Pasaporte">Otro</option>
             </select>
             <input class="custom-border-form" type="text" placeholder="Calle *">
             <input class="custom-border-form" type="number" placeholder="Altura *">

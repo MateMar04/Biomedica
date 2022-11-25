@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import Medico
+
 
 def home_screen_view(request):
     return render(request, "index.html")
@@ -19,3 +21,10 @@ def resultado_screen_view(request):
 
 def medico_screen_view(request):
     return render(request, "create_medico.html")
+
+
+def registrar_medico(request):
+    print(f"---{request.POST}---")
+    medico = Medico.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
+                                   matricula=request.POST['matricula'])
+    return render(request, "succesfull.html")

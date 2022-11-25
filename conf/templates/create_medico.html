@@ -26,11 +26,12 @@
     </header>
 
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="" action="">
+        <form class="form" id="a-form" method="post" action="{% url 'registrarMedico' %}">
+            {% csrf_token %}
             <h2 class="form_title title">Registar un Medico</h2>
-            <input class="custom-border-form" type="text" placeholder="Nombre *">
-            <input class="custom-border-form" type="text" placeholder="Apellido *">
-            <input class="custom-border-form" type="text" placeholder="Matricula *">
+            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
+            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
+            <input class="custom-border-form" type="text" placeholder="Matricula *" name="matricula">
             <button class="nav-link custom-btn custom-border-btn btn inactive">Registrar Medico</button>
         </form>
 

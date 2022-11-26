@@ -45,9 +45,9 @@ class Estudio(models.Model):
                                         null=True)  # Field name made lowercase.
     limite_superior = models.FloatField(db_column='LIMITE_SUPERIOR', blank=True,
                                         null=True)  # Field name made lowercase.
-    id_metodo = models.ForeignKey('Metodo', models.DO_NOTHING, db_column='ID_METODO', blank=True,
+    id_metodo = models.ForeignKey('Metodo', on_delete=models.CASCADE, db_column='ID_METODO', blank=True,
                                   null=True)  # Field name made lowercase.
-    id_unidad_de_medida = models.ForeignKey('UnidadDeMedida', models.DO_NOTHING, db_column='ID_UNIDAD_DE_MEDIDA',
+    id_unidad_de_medida = models.ForeignKey('UnidadDeMedida', on_delete=models.CASCADE, db_column='ID_UNIDAD_DE_MEDIDA',
                                             blank=True, null=True)  # Field name made lowercase.
 
     def __str__(self):
@@ -106,7 +106,7 @@ class Muestra(models.Model):
     descripccion = models.TextField(db_column='DESCRIPCCION', blank=True, null=True)  # Field name made lowercase.
     fecha_hora_extraccion = models.DateTimeField(db_column='FECHA_HORA_EXTRACCION', blank=True,
                                                  null=True)  # Field name made lowercase.
-    id_resultado = models.ForeignKey('Resultado', models.DO_NOTHING, db_column='ID_RESULTADO', blank=True,
+    id_resultado = models.ForeignKey('Resultado', on_delete=models.CASCADE, db_column='ID_RESULTADO', blank=True,
                                      null=True)  # Field name made lowercase.
 
     class Meta:
@@ -120,13 +120,14 @@ class Paciente(models.Model):
     nombre = models.CharField(db_column='NOMBRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
     apellido = models.CharField(db_column='APELLIDO', max_length=50, blank=True,
                                 null=True)  # Field name made lowercase.
-    id_sexo = models.ForeignKey('Sexo', models.DO_NOTHING, db_column='ID_SEXO', blank=True,
+    id_sexo = models.ForeignKey('Sexo', on_delete=models.CASCADE, db_column='ID_SEXO', blank=True,
                                 null=True)  # Field name made lowercase.
-    id_domicilio = models.ForeignKey(Domicilio, models.DO_NOTHING, db_column='ID_DOMICILIO', blank=True,
+    id_domicilio = models.ForeignKey(Domicilio, on_delete=models.CASCADE, db_column='ID_DOMICILIO', blank=True,
                                      null=True)  # Field name made lowercase.
-    id_telefono = models.ForeignKey('Telefono', models.DO_NOTHING, db_column='ID_TELEFONO', blank=True,
+    id_telefono = models.ForeignKey('Telefono', on_delete=models.CASCADE, db_column='ID_TELEFONO', blank=True,
                                     null=True)  # Field name made lowercase.
-    id_tipo_de_documento = models.ForeignKey('TipoDeDocumento', models.DO_NOTHING, db_column='ID_TIPO_DE_DOCUMENTO',
+    id_tipo_de_documento = models.ForeignKey('TipoDeDocumento', on_delete=models.CASCADE,
+                                             db_column='ID_TIPO_DE_DOCUMENTO',
                                              blank=True, null=True)  # Field name made lowercase.
     email = models.CharField(db_column='EMAIL', max_length=100, blank=True, null=True)  # Field name made lowercase.
 
@@ -136,22 +137,6 @@ class Paciente(models.Model):
     class Meta:
         managed = False
         db_table = 'PACIENTE'
-
-
-class Resultado(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    valor_hallado = models.FloatField(db_column='VALOR_HALLADO', blank=True, null=True)  # Field name made lowercase.
-    fecha = models.DateField(db_column='FECHA', blank=True, null=True)  # Field name made lowercase.
-    id_estudio = models.ForeignKey(Estudio, models.DO_NOTHING, db_column='ID_ESTUDIO', blank=True,
-                                   null=True)  # Field name made lowercase.
-    observacion = models.TextField(db_column='OBSERVACION', blank=True, null=True)  # Field name made lowercase.
-
-    def __str__(self):
-        return f"{self.valor_hallado}"
-
-    class Meta:
-        managed = False
-        db_table = 'RESULTADO'
 
 
 class Sexo(models.Model):
@@ -170,13 +155,14 @@ class Sexo(models.Model):
 class Solicitud(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     receta = models.CharField(db_column='RECETA', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    id_paciente = models.ForeignKey(Paciente, models.DO_NOTHING, db_column='ID_PACIENTE', blank=True,
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, db_column='ID_PACIENTE', blank=True,
                                     null=True)  # Field name made lowercase.
-    id_extraccionista = models.ForeignKey(Extraccionista, models.DO_NOTHING, db_column='ID_EXTRACCIONISTA', blank=True,
+    id_extraccionista = models.ForeignKey(Extraccionista, on_delete=models.CASCADE, db_column='ID_EXTRACCIONISTA',
+                                          blank=True,
                                           null=True)  # Field name made lowercase.
-    id_estado = models.ForeignKey(EstadoDeSolicitud, models.DO_NOTHING, db_column='ID_ESTADO', blank=True,
+    id_estado = models.ForeignKey(EstadoDeSolicitud, on_delete=models.CASCADE, db_column='ID_ESTADO', blank=True,
                                   null=True)  # Field name made lowercase.
-    id_medico = models.ForeignKey(Medico, models.DO_NOTHING, db_column='ID_MEDICO', blank=True,
+    id_medico = models.ForeignKey(Medico, on_delete=models.CASCADE, db_column='ID_MEDICO', blank=True,
                                   null=True)  # Field name made lowercase.
     fecha_hora_inicio = models.DateTimeField(db_column='FECHA_HORA_INICIO', blank=True,
                                              null=True)  # Field name made lowercase.
@@ -187,6 +173,24 @@ class Solicitud(models.Model):
     class Meta:
         managed = False
         db_table = 'SOLICITUD'
+
+
+class Resultado(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    valor_hallado = models.FloatField(db_column='VALOR_HALLADO', blank=True, null=True)  # Field name made lowercase.
+    fecha = models.DateField(db_column='FECHA', blank=True, null=True)  # Field name made lowercase.
+    id_estudio = models.ForeignKey(Estudio, on_delete=models.CASCADE, db_column='ID_ESTUDIO', blank=True,
+                                   null=True)  # Field name made lowercase.
+    id_solicitud = models.ForeignKey(Solicitud, on_delete=models.CASCADE, db_column='ID_SOLICITUD', blank=True,
+                                     null=True)
+    observacion = models.TextField(db_column='OBSERVACION', blank=True, null=True)  # Field name made lowercase.
+
+    def __str__(self):
+        return f"{self.valor_hallado}"
+
+    class Meta:
+        managed = False
+        db_table = 'RESULTADO'
 
 
 class Telefono(models.Model):

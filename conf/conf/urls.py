@@ -20,7 +20,8 @@ from confApp.views import (
     resultado_screen_view,
     medico_screen_view,
     registrar_medico,
-    registrar_paciente
+    registrar_paciente,
+    registrar_solicitud
 )
 from django.contrib import admin
 from django.urls import path
@@ -32,6 +33,7 @@ urlpatterns = [
     path('solicitud_register/', solicitud_screen_view, name='solicitud'),
     path('resultado/', resultado_screen_view, name='resultado'),
     path('medico_register/', medico_screen_view, name='medico'),
-    path('success_medico/', registrar_medico, name="registrarMedico"),
-    path('success_paciente/', registrar_paciente, name="registrarPaciente")
+    path('success_medico/', registrar_medico, name='registrarMedico'),
+    path('success_paciente/', registrar_paciente, name='registrarPaciente'),
+    path('success_solicitud/', registrar_solicitud, name='registrarSolicitud')
 ]

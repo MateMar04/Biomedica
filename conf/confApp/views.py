@@ -50,4 +50,5 @@ def registrar_paciente(request, null=None):
                                        n_documento=request.POST['nro_documento'],
                                        id_sexo=sexos[int(request.POST['sexo']) - 1], id_domicilio=domicilio,
                                        id_telefono=telefono, email=request.POST['email'])
-    return render(request, "success_medico.html")
+    return render(request, "success_paciente.html")
+

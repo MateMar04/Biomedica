@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Medico, TipoDeDocumento, Sexo, Paciente, Domicilio
+from .models import Medico, TipoDeDocumento, Sexo, Paciente, Domicilio, Telefono
 
 
 def home_screen_view(request):
@@ -39,9 +39,11 @@ def registrar_paciente(request):
 
     domicilio = Domicilio.objects.create(calle=request.POST['calle'], altura=request.POST['altura'],
                                          n_piso=nro_piso, departamento=request.POST['departamento'])
+    tipo_de_documentos = TipoDeDocumento.objects.all()
+    sexos = Sexo.objects.all()
+    telefono = Telefono.objects.create(numero=request.POST['telefono'])
     paciente = Paciente.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
-                                       id_tipo_de_documento=request.POST['tipo_documento'],
-                                       n_documento=request.POST['nro_documento'], id_sexo=request.POST['sexo'],
-                                       id_domicilio=domicilio.id, telefono=request.POST['telefono'],
-                                       email=request.POST['email'])
+                                       id_tipo_de_documento=tipo_de_documentos[int(request.POST['tipo_documento'])-1],
+                                       n_documento=request.POST['nro_documento'], id_sexo=sexos[int(request.POST['sexo'])-1],
+                                       id_domicilio=domicilio, id_telefono=telefono, email=request.POST['email'])
     return render(request, "success_medico.html")

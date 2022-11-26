@@ -39,7 +39,7 @@
                 {% endfor %}
             </select>
             <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento">
-            <select class="custom-border-select" name="Sexo" name="sexo">
+            <select class="custom-border-select" name="sexo">
                 <option disabled selected value="">Seleccione su Sexo</option>
                 {% for s in sexo %}
                     <option value="{{ s.id }}"> {{ s.nombre }}</option>

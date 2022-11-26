@@ -52,3 +52,10 @@ def registrar_paciente(request, null=None):
                                        id_telefono=telefono, email=request.POST['email'])
     return render(request, "success_paciente.html")
 
+
+def registrar_solicitud(request):
+    print(f"---{request.POST}---")
+
+    return render(request, "success_solicitud.html")
+
+

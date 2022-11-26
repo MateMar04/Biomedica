@@ -43,7 +43,8 @@ def registrar_paciente(request):
     sexos = Sexo.objects.all()
     telefono = Telefono.objects.create(numero=request.POST['telefono'])
     paciente = Paciente.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
-                                       id_tipo_de_documento=tipo_de_documentos[int(request.POST['tipo_documento'])-1],
-                                       n_documento=request.POST['nro_documento'], id_sexo=sexos[int(request.POST['sexo'])-1],
+                                       id_tipo_de_documento=tipo_de_documentos[int(request.POST['tipo_documento']) - 1],
+                                       n_documento=request.POST['nro_documento'],
+                                       id_sexo=sexos[int(request.POST['sexo']) - 1],
                                        id_domicilio=domicilio, id_telefono=telefono, email=request.POST['email'])
     return render(request, "success_medico.html")

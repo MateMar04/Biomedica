@@ -26,23 +26,23 @@
     </header>
 
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="" action="">
+        <form class="form" id="a-form" method="post" action="">
             <h2 class="form_title title">Realiza una Solicitud</h2>
-            <input class="custom-border-form" type="file" placeholder="Receta">
-            <input class="custom-border-form" type="date" placeholder="Fecha de la Receta">
-            <select class="custom-border-select" name="Paciente">
+            <input class="custom-border-form" type="text" placeholder="Receta" name="receta">
+            <input class="custom-border-form" type="date" placeholder="Fecha de la Receta" name="fecha_receta">
+            <select class="custom-border-select" name="paciente">
                 <option disabled selected value="">Seleccione un Paciente</option>
-                <option>Paciente 1</option>
+
             </select>
-            <input disabled class="custom-border-form" type="text" placeholder="ID Paciente">
-            <input class="custom-border-form" type="text" placeholder="Nombre">
-            <input class="custom-border-form" type="text" placeholder="Apellido">
-            <input class="custom-border-form" type="text" placeholder="Email">
-            <select disabled class="custom-border-select" name="Extraccionista">
+            <input disabled class="custom-border-form" type="text" placeholder="ID Paciente" name="id_paciente">
+            <input class="custom-border-form" type="text" placeholder="Nombre" name="nombre_paciente">
+            <input class="custom-border-form" type="text" placeholder="Apellido" name="apellido_paciente">
+            <input class="custom-border-form" type="text" placeholder="Email" name="email_paciente">
+            <select disabled class="custom-border-select" name="extraccionista">
                 <option disabled selected value="">Seleccione un Extraccionista</option>
                 <option>Extraciconista 1</option>
             </select>
-            <select class="custom-border-select" name="Medico">
+            <select class="custom-border-select" name="medico">
                 <option disabled selected value="">Seleccione un Medico</option>
                 <option>Medico 1</option>
             </select>

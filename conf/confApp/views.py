@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Medico, TipoDeDocumento, Sexo, Paciente, Domicilio, Telefono
+from .models import *
 
 
 def home_screen_view(request):
@@ -14,7 +14,13 @@ def paciente_screen_view(request):
 
 
 def solicitud_screen_view(request):
-    return render(request, "create_solicitud.html")
+    pacientes = Paciente.objects.all()
+    extraccionistas = Extraccionista.objects.all()
+    medicos = Medico.objects.all()
+    estudios = Estudio.objects.all()
+    return render(request, "create_solicitud.html",
+                  context={"paciente": pacientes, "extraccionista": extraccionistas, "medico": medicos,
+                           "estudio": estudios})
 
 
 def resultado_screen_view(request):
@@ -57,5 +63,3 @@ def registrar_solicitud(request):
     print(f"---{request.POST}---")
 
     return render(request, "success_solicitud.html")
-
-

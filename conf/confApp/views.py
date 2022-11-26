@@ -32,13 +32,16 @@ def registrar_medico(request):
     return render(request, "success_medico.html")
 
 
-def registrar_paciente(request):
+def registrar_paciente(request, null=None):
     print(f"---{request.POST}---")
     if request.POST['nro_piso'] == '':
-        nro_piso = 0
+        nro_piso = null
+
+    if request.POST['departamento'] == '':
+        departamento = null
 
     domicilio = Domicilio.objects.create(calle=request.POST['calle'], altura=request.POST['altura'],
-                                         n_piso=nro_piso, departamento=request.POST['departamento'])
+                                         n_piso=nro_piso, departamento=departamento)
     tipo_de_documentos = TipoDeDocumento.objects.all()
     sexos = Sexo.objects.all()
     telefono = Telefono.objects.create(numero=request.POST['telefono'])

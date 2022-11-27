@@ -39,7 +39,11 @@ def get_paciente_for_resultado_view(request):
 def get_paciente_for_resultado(request):
     pacientes = Paciente.objects.all()
     paciente = pacientes[int(request.POST['paciente']) - 1]
-    return render(request, "resultado.html", context={"paciente": paciente})
+    solicitudes = Solicitud.objects.filter(id_paciente=paciente.id)
+    resultados = Resultado.objects.filter(id_solicitud__id_paciente=paciente)
+
+    return render(request, "resultado.html",
+                  context={"paciente": paciente, "solicitud": solicitudes, "resultado": resultados})
 
 
 def medico_screen_view(request):

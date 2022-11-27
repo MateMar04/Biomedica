@@ -154,13 +154,15 @@ class Resultado {
     - id : int
     - valor_hallado : int
     - fecha_hora : datetime
+    - solicitud : Solicitud
     - estudio : Estudio
     - observacion : str
     --
     + get_id()
     + get_valor_hallado()
     + get_fecha()
-    + get_estado()
+    + get_solicitud()
+    + get_estudio()
 }
 
 class UnidadDeMedida {

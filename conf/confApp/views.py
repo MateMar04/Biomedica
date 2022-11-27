@@ -51,14 +51,12 @@ def medico_screen_view(request):
 
 
 def registrar_medico(request):
-    print(f"---{request.POST}---")
     medico = Medico.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
                                    matricula=request.POST['matricula'])
     return render(request, "success_medico.html")
 
 
 def registrar_paciente(request, null=None):
-    print(f"---{request.POST}---")
     if request.POST['nro_piso'] == '':
         nro_piso = null
 
@@ -79,16 +77,11 @@ def registrar_paciente(request, null=None):
 
 
 def registrar_solicitud(request, null=None):
-    print(f"---{request.POST}---")
-
     pacientes = Paciente.objects.all()
     medicos = Medico.objects.all()
     estados = EstadoDeSolicitud.objects.all()
     estudios = Estudio.objects.all()
     extraccionistas = Extraccionista.objects.all()
-    print(f"+++{estados}+++")
-    print(f"+++{estados[2]}+++")
-
     solicitud = Solicitud.objects.create(receta=request.POST['receta'], fecha_receta=request.POST['fecha_receta'],
                                          id_paciente=pacientes[int(request.POST['paciente']) - 1],
                                          id_estado=estados[2],
@@ -97,7 +90,6 @@ def registrar_solicitud(request, null=None):
                                          fecha_hora_inicio=datetime.datetime.now(), fecha_hora_finalizacion=null,
                                          cap=generate_cap(8))
 
-    print(request.POST.getlist('estudio'))
     for i in range(len(request.POST.getlist('estudio'))):
         resultado = Resultado.objects.create(valor_hallado=null, fecha=null,
                                              id_estudio=estudios[int(request.POST.getlist('estudio')[i]) - 1],

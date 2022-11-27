@@ -51,29 +51,35 @@ def medico_screen_view(request):
 
 
 def registrar_medico(request):
-    medico = Medico.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
-                                   matricula=request.POST['matricula'])
-    return render(request, "success_medico.html")
+    try:
+        medico = Medico.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
+                                       matricula=request.POST['matricula'])
+        return render(request, "success_medico.html")
+    except:
+        return render(request, "failed_medico.html")
 
 
 def registrar_paciente(request, null=None):
-    if request.POST['nro_piso'] == '':
-        nro_piso = null
+    try:
+        if request.POST['nro_piso'] == '':
+            nro_piso = null
 
-    if request.POST['departamento'] == '':
-        departamento = null
+        if request.POST['departamento'] == '':
+            departamento = null
 
-    domicilio = Domicilio.objects.create(calle=request.POST['calle'], altura=request.POST['altura'],
-                                         n_piso=nro_piso, departamento=departamento)
-    tipo_de_documentos = TipoDeDocumento.objects.all()
-    sexos = Sexo.objects.all()
-    telefono = Telefono.objects.create(numero=request.POST['telefono'])
-    paciente = Paciente.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
-                                       id_tipo_de_documento=tipo_de_documentos[int(request.POST['tipo_documento']) - 1],
-                                       n_documento=request.POST['nro_documento'],
-                                       id_sexo=sexos[int(request.POST['sexo']) - 1], id_domicilio=domicilio,
-                                       id_telefono=telefono, email=request.POST['email'])
-    return render(request, "success_paciente.html")
+        domicilio = Domicilio.objects.create(calle=request.POST['calle'], altura=request.POST['altura'],
+                                             n_piso=nro_piso, departamento=departamento)
+        tipo_de_documentos = TipoDeDocumento.objects.all()
+        sexos = Sexo.objects.all()
+        telefono = Telefono.objects.create(numero=request.POST['telefono'])
+        paciente = Paciente.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
+                                           id_tipo_de_documento=tipo_de_documentos[int(request.POST['tipo_documento']) - 1],
+                                           n_documento=request.POST['nro_documento'],
+                                           id_sexo=sexos[int(request.POST['sexo']) - 1], id_domicilio=domicilio,
+                                           id_telefono=telefono, email=request.POST['email'])
+        return render(request, "success_paciente.html")
+    except:
+        return render(request, "failed_paciente.html")
 
 
 def registrar_solicitud(request, null=None):

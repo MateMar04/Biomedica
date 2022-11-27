@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="es" dir="ltr">
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
@@ -21,14 +20,14 @@
     <header class="section header">
 
         <div class="header__text">
-            <p>Registre un nuevo paciente</p>
+            <p>Modifique un paciente</p>
         </div>
     </header>
 
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="post" action="{% url 'registrarPaciente' %}">
+        <form class="form" id="a-form" method="post" action="{% url 'modificarPaciente' %}">
             {% csrf_token %}
-            <h2 class="form_title title">Registar un Paciente</h2>
+            <h2 class="form_title title">Modificar un Paciente</h2>
             <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
             <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
             <select class="custom-border-select" name="tipo_documento">
@@ -50,7 +49,7 @@
             <input class="custom-border-form" type="text" placeholder="Departamento" name="departamento">
             <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono">
             <input class="custom-border-form" type="text" placeholder="Email *" name="email">
-            <button class="nav-link custom-btn custom-border-btn btn inactive">Registrar Paciente</button>
+            <button class="nav-link custom-btn custom-border-btn btn inactive">Modificar Paciente</button>
         </form>
 
     </section>

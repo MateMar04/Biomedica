@@ -39,5 +39,8 @@ urlpatterns = [
     path('success_paciente/', registrar_paciente, name='registrarPaciente'),
     path('success_solicitud/', registrar_solicitud, name='registrarSolicitud'),
     path('get_paciente_for_resultado/', get_paciente_for_resultado, name='getPacienteForResultado'),
-    path('get_paciente_for_resultado_view/', get_paciente_for_resultado_view, name='getPacienteForResultadoView')
+    path('get_paciente_for_resultado_view/', get_paciente_for_resultado_view, name='getPacienteForResultadoView'),
+    path('get_paciente_for_modificacion_view/', get_paciente_for_modificacion_view,
+         name='getPacienteForModificacionView'),
+    path('modify_paciente/', modifY_paciente, name='modifyPaciente')
 ]

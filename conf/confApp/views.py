@@ -73,7 +73,8 @@ def registrar_paciente(request, null=None):
         sexos = Sexo.objects.all()
         telefono = Telefono.objects.create(numero=request.POST['telefono'])
         paciente = Paciente.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
-                                           id_tipo_de_documento=tipo_de_documentos[int(request.POST['tipo_documento']) - 1],
+                                           id_tipo_de_documento=tipo_de_documentos[
+                                               int(request.POST['tipo_documento']) - 1],
                                            n_documento=request.POST['nro_documento'],
                                            id_sexo=sexos[int(request.POST['sexo']) - 1], id_domicilio=domicilio,
                                            id_telefono=telefono, email=request.POST['email'])
@@ -118,3 +119,15 @@ def generate_cap(length):
     letters = string.ascii_lowercase
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
+
+
+def get_paciente_for_modificacion_view(request):
+    pacientes = Paciente.objects.all()
+    return render(request, "get_modificacion.html", context={"paciente": pacientes})
+
+
+def modify_paciente(request):
+    try:
+        return render(request, "success_paciente.html")
+    except:
+        return render(request, "failed_paciente.html")

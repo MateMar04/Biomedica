@@ -27,10 +27,11 @@
             <li class="table-row">
                 <div class="col col-1" data-label="Solicitud">{{ r.id_solicitud.id }}</div>
                 <div class="col col-1" data-label="Fecha de Recepcion">{{ r.id_solicitud.fecha_hora_inicio }}</div>
-                <div class="col col-1" data-label="Medico">{{ r.id_solicitud.id_medico}}</div>
-                <div class="col col-1" data-label="Fecha de Finalizacion">{{ r.id_solicitud.fecha_hora_finalizacion }}</div>
-                <div class="col col-1" data-label="Fecha de Receta">15/12/2020</div>
-                <div class="col col-1" data-label="Estado">Pending</div>
+                <div class="col col-1" data-label="Medico">{{ r.id_solicitud.id_medico }}</div>
+                <div class="col col-1"
+                     data-label="Fecha de Finalizacion">{{ r.id_solicitud.fecha_hora_finalizacion }}</div>
+                <div class="col col-1" data-label="Fecha de Receta">{{ r.id_solicitud.fecha_receta }}</div>
+                <div class="col col-1" data-label="Estado">{{ r.id_solicitud.id_estado }}</div>
             </li>
         {% endfor %}
     </ul>
@@ -39,20 +40,29 @@
         <div class="container">
             <table>
                 <tr>
+                    <td class="cell cell-title">ID Solicitud:</td>
+                    <td class="cell">{{ r.id_solicitud.id }}</td>
+                </tr>
+                <tr>
+                    <td class="cell cell-title">ID Resultado:</td>
+                    <td class="cell">{{ r.id }}</td>
+                </tr>
+                <tr>
                     <td class="cell cell-title">Estudio:</td>
-                    <td class="cell">Glucemia</td>
+                    <td class="cell">{{ r.id_estudio }}</td>
                 </tr>
                 <tr>
                     <td class="cell cell-title">Metodo:</td>
-                    <td class="cell">Enzimatico</td>
+                    <td class="cell">{{ r.id_estudio.id_metodo }}</td>
                 </tr>
                 <tr>
                     <td class="cell cell-title">Rango de Referencia:</td>
-                    <td class="cell">10 - 15</td>
+                    <td class="cell">{{ r.id_estudio.limite_inferior }}
+                        - {{ r.id_estudio.limite_superior }} {{ r.id_estudio.id_unidad_de_medida }}</td>
                 </tr>
                 <tr>
                     <td class="cell cell-title">Valor Hallado:</td>
-                    <td class="cell">12</td>
+                    <td class="cell">{{ r.valor_hallado }} {{ r.id_estudio.id_unidad_de_medida }}</td>
                 </tr>
                 <tr>
                     <td class="cell cell-title">Fecha de Toma de Muestra:</td>

@@ -21,7 +21,8 @@ from confApp.views import (
     medico_screen_view,
     registrar_medico,
     registrar_paciente,
-    registrar_solicitud
+    registrar_solicitud,
+    get_paciente_for_resultado
 )
 from django.contrib import admin
 from django.urls import path
@@ -35,5 +36,6 @@ urlpatterns = [
     path('medico_register/', medico_screen_view, name='medico'),
     path('success_medico/', registrar_medico, name='registrarMedico'),
     path('success_paciente/', registrar_paciente, name='registrarPaciente'),
-    path('success_solicitud/', registrar_solicitud, name='registrarSolicitud')
+    path('success_solicitud/', registrar_solicitud, name='registrarSolicitud'),
+    path('get_paciente_for_resultado/', get_paciente_for_resultado, name='getPacienteForResultado')
 ]

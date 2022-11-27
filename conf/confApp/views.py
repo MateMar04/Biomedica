@@ -77,25 +77,35 @@ def registrar_paciente(request, null=None):
 
 
 def registrar_solicitud(request, null=None):
-    pacientes = Paciente.objects.all()
-    medicos = Medico.objects.all()
-    estados = EstadoDeSolicitud.objects.all()
-    estudios = Estudio.objects.all()
-    extraccionistas = Extraccionista.objects.all()
-    solicitud = Solicitud.objects.create(receta=request.POST['receta'], fecha_receta=request.POST['fecha_receta'],
-                                         id_paciente=pacientes[int(request.POST['paciente']) - 1],
-                                         id_estado=estados[2],
-                                         id_medico=medicos[int(request.POST['medico']) - 1],
-                                         id_extraccionista=extraccionistas[int(request.POST['extraccionista']) - 1],
-                                         fecha_hora_inicio=datetime.datetime.now(), fecha_hora_finalizacion=null,
-                                         cap=generate_cap(8))
+    now = datetime.date.today()
+    limit_date = datetime.date.today() - datetime.timedelta(days=15)
+    try:
+        if request.POST['fecha_receta' > limit_date]:
+            pacientes = Paciente.objects.all()
+            medicos = Medico.objects.all()
+            estados = EstadoDeSolicitud.objects.all()
+            estudios = Estudio.objects.all()
+            extraccionistas = Extraccionista.objects.all()
+            solicitud = Solicitud.objects.create(receta=request.POST['receta'],
+                                                 fecha_receta=request.POST['fecha_receta'],
+                                                 id_paciente=pacientes[int(request.POST['paciente']) - 1],
+                                                 id_estado=estados[2],
+                                                 id_medico=medicos[int(request.POST['medico']) - 1],
+                                                 id_extraccionista=extraccionistas[
+                                                     int(request.POST['extraccionista']) - 1],
+                                                 fecha_hora_inicio=datetime.datetime.now(),
+                                                 fecha_hora_finalizacion=null,
+                                                 cap=generate_cap(8))
 
-    for i in range(len(request.POST.getlist('estudio'))):
-        resultado = Resultado.objects.create(valor_hallado=null, fecha=null,
-                                             id_estudio=estudios[int(request.POST.getlist('estudio')[i]) - 1],
-                                             id_solicitud=solicitud, observacion=null)
-
-    return render(request, "success_solicitud.html")
+            for i in range(len(request.POST.getlist('estudio'))):
+                resultado = Resultado.objects.create(valor_hallado=null, fecha=null,
+                                                     id_estudio=estudios[int(request.POST.getlist('estudio')[i]) - 1],
+                                                     id_solicitud=solicitud, observacion=null)
+            return render(request, "success_solicitud.html")
+        else:
+            raise Exception("Receta vencida")
+    except:
+        return render(request, "failed_solicitud.html")
 
 
 def generate_cap(length):

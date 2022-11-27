@@ -31,9 +31,13 @@ def resultado_screen_view(request):
     return render(request, "resultado.html")
 
 
-def get_paciente_for_resultado(request):
+def get_paciente_for_resultado_view(request):
     pacientes = Paciente.objects.all()
     return render(request, "get_resultado.html", context={"paciente": pacientes})
+
+
+def get_paciente_for_resultado(request):
+    return render(request, "resultado.html")
 
 
 def medico_screen_view(request):

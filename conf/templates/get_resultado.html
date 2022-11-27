@@ -29,7 +29,7 @@
         <form class="form" id="a-form" method="post" action="{% url 'getPacienteForResultado' %}">
             {% csrf_token %}
             <h2 class="form_title title">Ingrese un Paciente</h2>
-            <select>
+            <select class="custom-border-select" name="paciente">
                 <option disabled selected value="">Seleccione un Paceinte</option>
                 {% for p in paciente %}
                     <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }} {{ p.n_documento }}</option>

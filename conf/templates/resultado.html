@@ -11,7 +11,7 @@
 </head>
 <body>
 {% include 'header.html' %}
-<h1>Resultados de </h1>
+<h1>Resultados de {{ paciente.nombre }} {{ paciente.apellido }}, {{ paciente.id_tipo_de_documento }}: {{ paciente.n_documento }}</h1>
 <div class="container">
     <ul class="responsive-table">
         <li class="table-header">

@@ -155,6 +155,7 @@ class Sexo(models.Model):
 class Solicitud(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     receta = models.CharField(db_column='RECETA', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    fecha_receta = models.DateField(db_column='FECHA_RECETA', blank=True, null=True)
     id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, db_column='ID_PACIENTE', blank=True,
                                     null=True)  # Field name made lowercase.
     id_extraccionista = models.ForeignKey(Extraccionista, on_delete=models.CASCADE, db_column='ID_EXTRACCIONISTA',

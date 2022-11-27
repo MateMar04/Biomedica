@@ -89,7 +89,7 @@ def registrar_solicitud(request, null=None):
     print(f"+++{estados}+++")
     print(f"+++{estados[2]}+++")
 
-    solicitud = Solicitud.objects.create(receta=request.POST['receta'],
+    solicitud = Solicitud.objects.create(receta=request.POST['receta'], fecha_receta=request.POST['fecha_receta'],
                                          id_paciente=pacientes[int(request.POST['paciente']) - 1],
                                          id_estado=estados[2],
                                          id_medico=medicos[int(request.POST['medico']) - 1],

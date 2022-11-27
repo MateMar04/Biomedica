@@ -27,29 +27,30 @@
 
     <!--  Sign Up  -->
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="" action="">
+        <form class="form" id="a-form" method="post" action="{% url 'registrarPaciente' %}">
+            {% csrf_token %}
             <h2 class="form_title title">Registar un Paciente</h2>
-            <input class="custom-border-form" type="text" placeholder="Nombre *">
-            <input class="custom-border-form" type="text" placeholder="Apellido *">
-            <select class="custom-border-select" name="Tipo de Documento">
+            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
+            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
+            <select class="custom-border-select" name="tipo_documento">
                 <option disabled selected value="">Tipo de Documento</option>
-                <option value="DNI">DNI</option>
-                <option value="CUIL">CUIL</option>
-                <option value="Pasaporte">Pasaporte</option>
+                {% for t in tipo %}
+                    <option value="{{ t.id }}"> {{ t.nombre }}</option>
+                {% endfor %}
             </select>
-            <input class="custom-border-form" type="number" placeholder="N° Documento *">
-            <select class="custom-border-select" name="Sexo">
+            <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento">
+            <select class="custom-border-select" name="sexo">
                 <option disabled selected value="">Seleccione su Sexo</option>
-                <option value="DNI">Masculino</option>
-                <option value="CUIL">Femenino</option>
-                <option value="Pasaporte">Otro</option>
+                {% for s in sexo %}
+                    <option value="{{ s.id }}"> {{ s.nombre }}</option>
+                {% endfor %}
             </select>
-            <input class="custom-border-form" type="text" placeholder="Calle *">
-            <input class="custom-border-form" type="number" placeholder="Altura *">
-            <input class="custom-border-form" type="text" placeholder="N° Piso ">
-            <input class="custom-border-form" type="text" placeholder="Departamento">
-            <input class="custom-border-form" type="tel" placeholder="Telefono *">
-            <input class="custom-border-form" type="text" placeholder="Email *">
+            <input class="custom-border-form" type="text" placeholder="Calle *" name="calle">
+            <input class="custom-border-form" type="number" placeholder="Altura *" name="altura">
+            <input class="custom-border-form" type="text" placeholder="N° Piso " name="nro_piso">
+            <input class="custom-border-form" type="text" placeholder="Departamento" name="departamento">
+            <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono">
+            <input class="custom-border-form" type="text" placeholder="Email *" name="email">
             <button class="nav-link custom-btn custom-border-btn btn inactive">Registrar Paciente</button>
         </form>
 

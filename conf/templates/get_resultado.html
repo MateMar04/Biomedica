@@ -21,18 +21,21 @@
     <header class="section header">
 
         <div class="header__text">
-            <p>Registre un nuevo medico</p>
+            <p>Vea los resultados de un paciente</p>
         </div>
     </header>
 
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="post" action="{% url 'registrarMedico' %}">
+        <form class="form" id="a-form" method="post" action="{% url 'getPacienteForResultado' %}">
             {% csrf_token %}
-            <h2 class="form_title title">Registar un Medico</h2>
-            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
-            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
-            <input class="custom-border-form" type="text" placeholder="Matricula *" name="matricula">
-            <button class="nav-link custom-btn custom-border-btn btn inactive">Registrar Medico</button>
+            <h2 class="form_title title">Ingrese un Paciente</h2>
+            <select class="custom-border-select" name="paciente">
+                <option disabled selected value="">Seleccione un Paceinte</option>
+                {% for p in paciente %}
+                    <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }} {{ p.n_documento }}</option>
+                {% endfor %}
+            </select>
+            <button class="nav-link custom-btn custom-border-btn btn inactive">Obtener Resultados</button>
         </form>
 
     </section>

@@ -59,7 +59,6 @@ def load_paciente(request):
     paciente = pacientes[int(request.POST['paciente']) - 1]
     domicilio = Domicilio.objects.filter(id=paciente.id_domicilio.id)
     telefono = Telefono.objects.filter(id=paciente.id_telefono.id)
-    print(f"---{request.POST}---")
 
     return render(request, "modify_paciente.html",
                   context={"paciente": paciente, "tipo": tipos_de_documentos, "sexo": sexos})
@@ -71,9 +70,6 @@ def modify_paciente(request, null=None):
         paciente = pacientes[int(request.POST['id']) - 1]
         tipos_de_documentos = TipoDeDocumento.objects.all()
         sexos = Sexo.objects.all()
-
-        print(paciente)
-        print(f"---{request.POST}---")
 
         Telefono.objects.filter(id=paciente.id_telefono.id).update(numero=request.POST['telefono'])
 
@@ -93,7 +89,8 @@ def modify_paciente(request, null=None):
                                                        id_sexo=sexos[int(request.POST['sexo']) - 1],
                                                        email=request.POST['email'])
 
-        return render(request, "success_paciente.html")
+        message = f"Paciente {paciente} modificado con exito"
+        return render(request, "success.html", context={"message": message})
     except:
         return render(request, "failed_paciente.html")
 
@@ -106,7 +103,8 @@ def registrar_medico(request):
     try:
         medico = Medico.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
                                        matricula=request.POST['matricula'])
-        return render(request, "success_medico.html")
+        message = f"Medico {medico} registrado con exito"
+        return render(request, "success.html", context={"message": message})
     except:
         return render(request, "failed_medico.html")
 
@@ -130,16 +128,16 @@ def registrar_paciente(request, null=None):
                                            n_documento=request.POST['nro_documento'],
                                            id_sexo=sexos[int(request.POST['sexo']) - 1], id_domicilio=domicilio,
                                            id_telefono=telefono, email=request.POST['email'])
-        return render(request, "success_paciente.html")
+        message = f"Paciente {paciente} registrado con exito"
+        return render(request, "success.html", context={"message": message})
     except:
         return render(request, "failed_paciente.html")
 
 
 def registrar_solicitud(request, null=None):
-    now = datetime.date.today()
     limit_date = datetime.date.today() - datetime.timedelta(days=15)
     try:
-        if request.POST['fecha_receta' > limit_date]:
+        if request.POST['fecha_receta'] > str(limit_date):
             pacientes = Paciente.objects.all()
             medicos = Medico.objects.all()
             estados = EstadoDeSolicitud.objects.all()
@@ -160,9 +158,11 @@ def registrar_solicitud(request, null=None):
                 resultado = Resultado.objects.create(valor_hallado=null, fecha=null,
                                                      id_estudio=estudios[int(request.POST.getlist('estudio')[i]) - 1],
                                                      id_solicitud=solicitud, observacion=null)
-            return render(request, "success_solicitud.html")
+
+            message = f"Solicitud id: {solicitud.id} registrada con exito"
+            return render(request, "success.html", context={"message": message})
         else:
-            raise Exception("Receta vencida")
+            return render(request, "failed_solicitud.html")
     except:
         return render(request, "failed_solicitud.html")
 

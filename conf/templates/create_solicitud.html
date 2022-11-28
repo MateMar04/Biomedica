@@ -37,12 +37,14 @@
                     <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }} {{ p.n_documento }}</option>
                 {% endfor %}
             </select>
+
             <select class="custom-border-select" name="extraccionista">
                 <option disabled selected value="">Seleccione un Extraccionista</option>
                 {% for e in extraccionista %}
                     <option value="{{ e.id }}">{{ e.nombre }} {{ e.apellido }}</option>
                 {% endfor %}
             </select>
+
             <select class="custom-border-select" name="medico">
                 <option disabled selected value="">Seleccione un Medico</option>
                 {% for m in medico %}
@@ -58,6 +60,8 @@
                 {% endfor %}
             </div>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Realizar Solicitud</button>
+            <a style="text-align:center;margin:2px;margin-top: 2rem; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="http://127.0.0.1:8000/medico_register/">Crear Paciente</a>
+            
         </form>
     </section>
 </div>

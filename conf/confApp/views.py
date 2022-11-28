@@ -97,6 +97,7 @@ def modify_paciente(request, null=None):
     except:
         return render(request, "failed_paciente.html")
 
+
 def medico_screen_view(request):
     return render(request, "create_medico.html")
 

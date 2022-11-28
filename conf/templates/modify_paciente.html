@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Biomedical</title>
+    <link rel="shortcut icon" href="{% static 'images/logopage.png' %}">
+</head>
+<body>
+
+{% include 'header.html' %}
+
+<div class="wrapper">
+    <header class="section header">
+
+        <div class="header__text">
+            <p>Modifique un paciente</p>
+        </div>
+    </header>
+
+    <section class="section sign-up" style="display: block">
+        <form class="form" id="a-form" method="post" action="{% url 'modifyPaciente' %}">
+            {% csrf_token %}
+            <h2 class="form_title title">Modificar un Paciente</h2>
+            <input readonly class="custom-border-form" type="text" placeholder="ID *" name="id"
+                   value="{{ paciente.id }}">
+            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre"
+                   value="{{ paciente.nombre }}">
+            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido"
+                   value="{{ paciente.apellido }}">
+            <select class="custom-border-select" name="tipo_documento">
+                <option disabled selected value="">Tipo de Documento</option>
+                {% for t in tipo %}
+                    <option value="{{ t.id }}"> {{ t.nombre }}</option>
+                {% endfor %}
+            </select>
+            <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento"
+                   value="{{ paciente.n_documento }}">
+            <select class="custom-border-select" name="sexo">
+                <option disabled selected value="">Seleccione su Sexo</option>
+                {% for s in sexo %}
+                    <option value="{{ s.id }}"> {{ s.nombre }}</option>
+                {% endfor %}
+            </select>
+            <input class="custom-border-form" type="text" placeholder="Calle *" name="calle"
+                   value="{{ paciente.id_domicilio.calle }}">
+            <input class="custom-border-form" type="number" placeholder="Altura *" name="altura"
+                   value="{{ paciente.id_domicilio.altura }}">
+            <input class="custom-border-form" type="text" placeholder="N° Piso " name="nro_piso"
+                   value="{{ paciente.id_domicilio.n_piso }}">
+            <input class="custom-border-form" type="text" placeholder="Departamento" name="departamento"
+                   value="{{ paciente.id_domicilio.departamento }}">
+            <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono"
+                   value="{{ paciente.id_telefono.numero }}">
+            <input class="custom-border-form" type="text" placeholder="Email *" name="email"
+                   value="{{ paciente.email }}">
+            <button class="nav-link custom-btn custom-border-btn btn inactive">Modificar Paciente</button>
+        </form>
+
+    </section>
+</div>
+
+</body>
+</html>

@@ -100,6 +100,7 @@ entity Resultado {
     --
     * valor_hallado
     * fecha
+    * id_solicitud
     * id_estudio
     * observacion
 }

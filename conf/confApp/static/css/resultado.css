@@ -20,7 +20,7 @@ body {
 }
 
 .responsive-table .table-header {
-    background-color: #95A5A6;
+    background-color: #5bc1ac;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -54,7 +54,7 @@ body {
     }
 
     .responsive-table .col:before {
-        color: #6C7A89;
+        color: #5bc1ac;
         padding-right: 10px;
         content: attr(data-label);
         flex-basis: 50%;

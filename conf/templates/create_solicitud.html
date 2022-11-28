@@ -26,35 +26,38 @@
     </header>
 
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="" action="">
+        <form class="form" id="a-form" method="post" action="{% url 'registrarSolicitud' %}">
+            {% csrf_token %}
             <h2 class="form_title title">Realiza una Solicitud</h2>
-            <input class="custom-border-form" type="file" placeholder="Receta">
-            <input class="custom-border-form" type="date" placeholder="Fecha de la Receta">
-            <select class="custom-border-select" name="Paciente">
+            <input class="custom-border-form" type="text" placeholder="Receta" name="receta">
+            <input class="custom-border-form" type="date" placeholder="Fecha de la Receta" name="fecha_receta">
+            <select class="custom-border-select" name="paciente">
                 <option disabled selected value="">Seleccione un Paciente</option>
-                <option>Paciente 1</option>
+                {% for p in paciente %}
+                    <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }} {{ p.n_documento }}</option>
+                {% endfor %}
             </select>
-            <input disabled class="custom-border-form" type="text" placeholder="ID Paciente">
-            <input class="custom-border-form" type="text" placeholder="Nombre">
-            <input class="custom-border-form" type="text" placeholder="Apellido">
-            <input class="custom-border-form" type="text" placeholder="Email">
-            <select disabled class="custom-border-select" name="Extraccionista">
+            <select class="custom-border-select" name="extraccionista">
                 <option disabled selected value="">Seleccione un Extraccionista</option>
-                <option>Extraciconista 1</option>
+                {% for e in extraccionista %}
+                    <option value="{{ e.id }}">{{ e.nombre }} {{ e.apellido }}</option>
+                {% endfor %}
             </select>
-            <select class="custom-border-select" name="Medico">
+            <select class="custom-border-select" name="medico">
                 <option disabled selected value="">Seleccione un Medico</option>
-                <option>Medico 1</option>
+                {% for m in medico %}
+                    <option value="{{ m.id }}">{{ m.nombre }} {{ m.apellido }}</option>
+                {% endfor %}
             </select>
 
             <div>
-                <label for="Estudio1"> Estudio 1</label>
-                <input class="custom-border-form" type="checkbox" id="Estudio1">
+                {% for es in estudio %}
+                    <label for="{{ es.id }}"> {{ es.nombre }}</label>
+                    <input name="estudio" class="custom-border-form" type="checkbox" id="{{ es.id }}"
+                           value="{{ es.id }}">
+                {% endfor %}
             </div>
-
-            <button class="nav-link custom-btn custom-border-btn btn inactive">Modificar datos</button>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Relaizar Solicitud</button>
-
         </form>
     </section>
 </div>

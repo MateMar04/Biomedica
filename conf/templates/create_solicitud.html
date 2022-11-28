@@ -60,9 +60,9 @@
                 {% endfor %}
             </div>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Realizar Solicitud</button>
-            <a style="text-align:center;margin:2px;margin-top: 2rem; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="http://127.0.0.1:8000/medico_register/">Crear Paciente</a>
-            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="http://127.0.0.1:8000/medico_register/">Crear Extraccionista</a>
-            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="http://127.0.0.1:8000/medico_register/">Crear Medico</a>
+            <a style="text-align:center;margin:2px;margin-top: 2rem; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'paciente' %}">Crear Paciente</a>
+            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'getPacienteForModificacionView' %}">Modificar Paciente</a>
+            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'medico' %}">Crear Medico</a>
         </form>
     </section>
 </div>

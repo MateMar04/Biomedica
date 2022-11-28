@@ -46,6 +46,58 @@ def get_paciente_for_resultado(request):
                   context={"paciente": paciente, "solicitud": solicitudes, "resultado": resultados})
 
 
+def get_paciente_for_modificacion_view(request):
+    pacientes = Paciente.objects.all()
+    return render(request, "get_modificacion.html", context={"paciente": pacientes})
+
+
+def load_paciente(request):
+    pacientes = Paciente.objects.all()
+    tipos_de_documentos = TipoDeDocumento.objects.all()
+    sexos = Sexo.objects.all()
+
+    paciente = pacientes[int(request.POST['paciente']) - 1]
+    domicilio = Domicilio.objects.filter(id=paciente.id_domicilio.id)
+    telefono = Telefono.objects.filter(id=paciente.id_telefono.id)
+    print(f"---{request.POST}---")
+
+    return render(request, "modify_paciente.html",
+                  context={"paciente": paciente, "tipo": tipos_de_documentos, "sexo": sexos})
+
+
+def modify_paciente(request, null=None):
+    try:
+        pacientes = Paciente.objects.all()
+        paciente = pacientes[int(request.POST['id']) - 1]
+        tipos_de_documentos = TipoDeDocumento.objects.all()
+        sexos = Sexo.objects.all()
+
+        print(paciente)
+        print(f"---{request.POST}---")
+
+        Telefono.objects.filter(id=paciente.id_telefono.id).update(numero=request.POST['telefono'])
+
+        Domicilio.objects.filter(id=paciente.id_domicilio.id).update(calle=request.POST['calle'],
+                                                                     altura=request.POST['altura'],
+                                                                     n_piso=0 if request.POST[
+                                                                                     'nro_piso'] is null or 'None' or '' else
+                                                                     int(request.POST['nro_piso']),
+                                                                     departamento='' if request.POST[
+                                                                                            'departamento'] is null or 'None' else
+                                                                     request.POST['departamento'])
+
+        Paciente.objects.filter(id=paciente.id).update(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
+                                                       id_tipo_de_documento=tipos_de_documentos[
+                                                           int(request.POST['tipo_documento']) - 1],
+                                                       n_documento=request.POST['nro_documento'],
+                                                       id_sexo=sexos[int(request.POST['sexo']) - 1],
+                                                       email=request.POST['email'])
+
+        return render(request, "success_paciente.html")
+    except:
+        return render(request, "failed_paciente.html")
+
+
 def medico_screen_view(request):
     return render(request, "create_medico.html")
 
@@ -61,11 +113,11 @@ def registrar_medico(request):
 
 def registrar_paciente(request, null=None):
     try:
-        if request.POST['nro_piso'] == '':
-            nro_piso = null
+        if request.POST['nro_piso'] == '' or null:
+            nro_piso = 0
 
-        if request.POST['departamento'] == '':
-            departamento = null
+        if request.POST['departamento'] == '' or null:
+            departamento = '-'
 
         domicilio = Domicilio.objects.create(calle=request.POST['calle'], altura=request.POST['altura'],
                                              n_piso=nro_piso, departamento=departamento)
@@ -73,7 +125,8 @@ def registrar_paciente(request, null=None):
         sexos = Sexo.objects.all()
         telefono = Telefono.objects.create(numero=request.POST['telefono'])
         paciente = Paciente.objects.create(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
-                                           id_tipo_de_documento=tipo_de_documentos[int(request.POST['tipo_documento']) - 1],
+                                           id_tipo_de_documento=tipo_de_documentos[
+                                               int(request.POST['tipo_documento']) - 1],
                                            n_documento=request.POST['nro_documento'],
                                            id_sexo=sexos[int(request.POST['sexo']) - 1], id_domicilio=domicilio,
                                            id_telefono=telefono, email=request.POST['email'])

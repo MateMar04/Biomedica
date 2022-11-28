@@ -77,11 +77,13 @@ def modify_paciente(request):
     domicilio = Domicilio.objects.filter(id=paciente.id_domicilio.id)
     telefono = Telefono.objects.filter(id=paciente.id_telefono.id)
 
-    paciente.nombre = request.POST['nombre']
+    Paciente.objects.filter(id=paciente.id).update(id_sexo=sexos[int(request.POST['sexo']) - 1])
+
+    """paciente.nombre = request.POST['nombre']
     paciente.apellido = request.POST['apellido']
     paciente.id_tipo_de_documento = tipos_de_documentos[int(request.POST['tipo_documento']) - 1]
     paciente.n_documento = request.POST['nro_documento']
-    paciente.id_sexo = sexos[int(request.POST['sexo']) - 1]
+    paciente.id_sexo = 
     domicilio.calle = request.POST['calle']
     domicilio.altura = request.POST['altura']
     domicilio.n_piso = request.POST['nro_piso']
@@ -89,6 +91,7 @@ def modify_paciente(request):
     telefono.numero = request.POST['telefono']
     paciente.email = request.POST['email']
 
+    """
     print(paciente.id_sexo)
 
     return render(request, "success_paciente.html")

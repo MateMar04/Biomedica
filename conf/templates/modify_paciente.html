@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
@@ -25,30 +26,41 @@
     </header>
 
     <section class="section sign-up" style="display: block">
-        <form class="form" id="a-form" method="post" action="{% url 'modificarPaciente' %}">
+        <form class="form" id="a-form" method="post" action="{% url 'modifyPaciente' %}">
             {% csrf_token %}
             <h2 class="form_title title">Modificar un Paciente</h2>
-            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
-            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
+            <input readonly class="custom-border-form" type="text" placeholder="ID *" name="id"
+                   value="{{ paciente.id }}">
+            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre"
+                   value="{{ paciente.nombre }}">
+            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido"
+                   value="{{ paciente.apellido }}">
             <select class="custom-border-select" name="tipo_documento">
                 <option disabled selected value="">Tipo de Documento</option>
                 {% for t in tipo %}
                     <option value="{{ t.id }}"> {{ t.nombre }}</option>
                 {% endfor %}
             </select>
-            <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento">
+            <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento"
+                   value="{{ paciente.n_documento }}">
             <select class="custom-border-select" name="sexo">
                 <option disabled selected value="">Seleccione su Sexo</option>
                 {% for s in sexo %}
                     <option value="{{ s.id }}"> {{ s.nombre }}</option>
                 {% endfor %}
             </select>
-            <input class="custom-border-form" type="text" placeholder="Calle *" name="calle">
-            <input class="custom-border-form" type="number" placeholder="Altura *" name="altura">
-            <input class="custom-border-form" type="text" placeholder="N° Piso " name="nro_piso">
-            <input class="custom-border-form" type="text" placeholder="Departamento" name="departamento">
-            <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono">
-            <input class="custom-border-form" type="text" placeholder="Email *" name="email">
+            <input class="custom-border-form" type="text" placeholder="Calle *" name="calle"
+                   value="{{ paciente.id_domicilio.calle }}">
+            <input class="custom-border-form" type="number" placeholder="Altura *" name="altura"
+                   value="{{ paciente.id_domicilio.altura }}">
+            <input class="custom-border-form" type="text" placeholder="N° Piso " name="nro_piso"
+                   value="{{ paciente.id_domicilio.n_piso }}">
+            <input class="custom-border-form" type="text" placeholder="Departamento" name="departamento"
+                   value="{{ paciente.id_domicilio.departamento }}">
+            <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono"
+                   value="{{ paciente.id_telefono.numero }}">
+            <input class="custom-border-form" type="text" placeholder="Email *" name="email"
+                   value="{{ paciente.email }}">
             <button class="nav-link custom-btn custom-border-btn btn inactive">Modificar Paciente</button>
         </form>
 

@@ -25,6 +25,7 @@ from confApp.views import (
     get_paciente_for_resultado,
     get_paciente_for_resultado_view,
     get_paciente_for_modificacion_view,
+    load_paciente,
     modify_paciente
 )
 from django.contrib import admin
@@ -44,5 +45,6 @@ urlpatterns = [
     path('get_paciente_for_resultado_view/', get_paciente_for_resultado_view, name='getPacienteForResultadoView'),
     path('get_paciente_for_modificacion_view/', get_paciente_for_modificacion_view,
          name='getPacienteForModificacionView'),
+    path('load_paciente/', load_paciente, name='loadPaciente'),
     path('modify_paciente/', modify_paciente, name='modifyPaciente')
 ]

@@ -46,6 +46,54 @@ def get_paciente_for_resultado(request):
                   context={"paciente": paciente, "solicitud": solicitudes, "resultado": resultados})
 
 
+def get_paciente_for_modificacion_view(request):
+    pacientes = Paciente.objects.all()
+    return render(request, "get_modificacion.html", context={"paciente": pacientes})
+
+
+def load_paciente(request):
+    pacientes = Paciente.objects.all()
+    tipos_de_documentos = TipoDeDocumento.objects.all()
+    sexos = Sexo.objects.all()
+
+    paciente = pacientes[int(request.POST['paciente']) - 1]
+    domicilio = Domicilio.objects.filter(id=paciente.id_domicilio.id)
+    telefono = Telefono.objects.filter(id=paciente.id_telefono.id)
+    print(f"---{request.POST}---")
+
+    return render(request, "modify_paciente.html",
+                  context={"paciente": paciente, "tipo": tipos_de_documentos, "sexo": sexos})
+
+
+def modify_paciente(request):
+    pacientes = Paciente.objects.all()
+    paciente = pacientes[int(request.POST['id']) - 1]
+    tipos_de_documentos = TipoDeDocumento.objects.all()
+    sexos = Sexo.objects.all()
+
+    print(paciente)
+    print(f"---{request.POST}---")
+
+    domicilio = Domicilio.objects.filter(id=paciente.id_domicilio.id)
+    telefono = Telefono.objects.filter(id=paciente.id_telefono.id)
+
+    paciente.nombre = request.POST['nombre']
+    paciente.apellido = request.POST['apellido']
+    paciente.id_tipo_de_documento = tipos_de_documentos[int(request.POST['tipo_documento']) - 1]
+    paciente.n_documento = request.POST['nro_documento']
+    paciente.id_sexo = sexos[int(request.POST['sexo']) - 1]
+    domicilio.calle = request.POST['calle']
+    domicilio.altura = request.POST['altura']
+    domicilio.n_piso = request.POST['nro_piso']
+    domicilio.departamento = request.POST['departamento']
+    telefono.numero = request.POST['telefono']
+    paciente.email = request.POST['email']
+
+    print(paciente.id_sexo)
+
+    return render(request, "success_paciente.html")
+
+
 def medico_screen_view(request):
     return render(request, "create_medico.html")
 
@@ -119,15 +167,3 @@ def generate_cap(length):
     letters = string.ascii_lowercase
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
-
-
-def get_paciente_for_modificacion_view(request):
-    pacientes = Paciente.objects.all()
-    return render(request, "get_modificacion.html", context={"paciente": pacientes})
-
-
-def modify_paciente(request):
-    try:
-        return render(request, "success_paciente.html")
-    except:
-        return render(request, "failed_paciente.html")

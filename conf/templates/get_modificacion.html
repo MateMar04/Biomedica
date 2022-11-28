@@ -30,7 +30,7 @@
             {% csrf_token %}
             <h2 class="form_title title">Ingrese un Paciente</h2>
             <select class="custom-border-select" name="paciente">
-                <option disabled selected value="">Seleccione un Paceinte</option>
+                <option disabled selected value="">Seleccione un Paciente</option>
                 {% for p in paciente %}
                     <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }} {{ p.n_documento }}</option>
                 {% endfor %}

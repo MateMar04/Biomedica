@@ -66,34 +66,36 @@ def load_paciente(request):
 
 
 def modify_paciente(request, null=None):
-    pacientes = Paciente.objects.all()
-    paciente = pacientes[int(request.POST['id']) - 1]
-    tipos_de_documentos = TipoDeDocumento.objects.all()
-    sexos = Sexo.objects.all()
+    try:
+        pacientes = Paciente.objects.all()
+        paciente = pacientes[int(request.POST['id']) - 1]
+        tipos_de_documentos = TipoDeDocumento.objects.all()
+        sexos = Sexo.objects.all()
 
-    print(paciente)
-    print(f"---{request.POST}---")
+        print(paciente)
+        print(f"---{request.POST}---")
 
-    Telefono.objects.filter(id=paciente.id_telefono.id).update(numero=request.POST['telefono'])
+        Telefono.objects.filter(id=paciente.id_telefono.id).update(numero=request.POST['telefono'])
 
-    Domicilio.objects.filter(id=paciente.id_domicilio.id).update(calle=request.POST['calle'],
-                                                                 altura=request.POST['altura'],
-                                                                 n_piso=0 if request.POST[
-                                                                                 'nro_piso'] is null or 'None' or '' else
-                                                                 int(request.POST['nro_piso']),
-                                                                 departamento='' if request.POST[
-                                                                                        'departamento'] is null or 'None' else
-                                                                 request.POST['departamento'])
+        Domicilio.objects.filter(id=paciente.id_domicilio.id).update(calle=request.POST['calle'],
+                                                                     altura=request.POST['altura'],
+                                                                     n_piso=0 if request.POST[
+                                                                                     'nro_piso'] is null or 'None' or '' else
+                                                                     int(request.POST['nro_piso']),
+                                                                     departamento='' if request.POST[
+                                                                                            'departamento'] is null or 'None' else
+                                                                     request.POST['departamento'])
 
-    Paciente.objects.filter(id=paciente.id).update(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
-                                                   id_tipo_de_documento=tipos_de_documentos[
-                                                       int(request.POST['tipo_documento']) - 1],
-                                                   n_documento=request.POST['nro_documento'],
-                                                   id_sexo=sexos[int(request.POST['sexo']) - 1],
-                                                   email=request.POST['email'])
+        Paciente.objects.filter(id=paciente.id).update(nombre=request.POST['nombre'], apellido=request.POST['apellido'],
+                                                       id_tipo_de_documento=tipos_de_documentos[
+                                                           int(request.POST['tipo_documento']) - 1],
+                                                       n_documento=request.POST['nro_documento'],
+                                                       id_sexo=sexos[int(request.POST['sexo']) - 1],
+                                                       email=request.POST['email'])
 
-    return render(request, "success_paciente.html")
-
+        return render(request, "success_paciente.html")
+    except:
+        return render(request, "failed_paciente.html")
 
 def medico_screen_view(request):
     return render(request, "create_medico.html")

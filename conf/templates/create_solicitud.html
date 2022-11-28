@@ -37,12 +37,14 @@
                     <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }} {{ p.n_documento }}</option>
                 {% endfor %}
             </select>
+
             <select class="custom-border-select" name="extraccionista">
                 <option disabled selected value="">Seleccione un Extraccionista</option>
                 {% for e in extraccionista %}
                     <option value="{{ e.id }}">{{ e.nombre }} {{ e.apellido }}</option>
                 {% endfor %}
             </select>
+
             <select class="custom-border-select" name="medico">
                 <option disabled selected value="">Seleccione un Medico</option>
                 {% for m in medico %}
@@ -57,7 +59,10 @@
                            value="{{ es.id }}">
                 {% endfor %}
             </div>
-            <button class="nav-link custom-btn custom-border-btn btn inactive">Relaizar Solicitud</button>
+            <button class="nav-link custom-btn custom-border-btn btn inactive">Realizar Solicitud</button>
+            <a style="text-align:center;margin:2px;margin-top: 2rem; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'paciente' %}">Crear Paciente</a>
+            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'getPacienteForModificacionView' %}">Modificar Paciente</a>
+            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'medico' %}">Crear Medico</a>
         </form>
     </section>
 </div>

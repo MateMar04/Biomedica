@@ -92,7 +92,8 @@ def modify_paciente(request, null=None):
         message = f"Paciente {paciente} modificado con exito"
         return render(request, "success.html", context={"message": message})
     except:
-        return render(request, "failed_paciente.html")
+        message = f"El Paciente no se pudo modificar"
+        return render(request, "failed.html", context={"message": message})
 
 
 def medico_screen_view(request):
@@ -106,7 +107,8 @@ def registrar_medico(request):
         message = f"Medico {medico} registrado con exito"
         return render(request, "success.html", context={"message": message})
     except:
-        return render(request, "failed_medico.html")
+        message = f"El Medico no se pudo registrar"
+        return render(request, "failed.html", context={"message": message})
 
 
 def registrar_paciente(request, null=None):
@@ -131,7 +133,8 @@ def registrar_paciente(request, null=None):
         message = f"Paciente {paciente} registrado con exito"
         return render(request, "success.html", context={"message": message})
     except:
-        return render(request, "failed_paciente.html")
+        message = f"El Paciente no se pudo registrar"
+        return render(request, "failed.html", context={"message": message})
 
 
 def registrar_solicitud(request, null=None):
@@ -162,9 +165,11 @@ def registrar_solicitud(request, null=None):
             message = f"Solicitud id: {solicitud.id} registrada con exito"
             return render(request, "success.html", context={"message": message})
         else:
-            return render(request, "failed_solicitud.html")
+            message = f"La solicitud no se pudo registrar porque la receta esta vencida"
+            return render(request, "failed.html", context={"message": message})
     except:
-        return render(request, "failed_solicitud.html")
+        message = f"La solicitud no se pudo registrar"
+        return render(request, "failed.html", context={"message": message})
 
 
 def generate_cap(length):

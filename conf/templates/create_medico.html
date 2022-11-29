@@ -28,9 +28,9 @@
         <form class="form" id="a-form" method="post" action="{% url 'registrarMedico' %}">
             {% csrf_token %}
             <h2 class="form_title title">Registar un Medico</h2>
-            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
-            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
-            <input class="custom-border-form" type="text" placeholder="Matricula *" name="matricula">
+            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre" required>
+            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido" required>
+            <input class="custom-border-form" type="text" placeholder="Matricula *" name="matricula" required>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Registrar Medico</button>
         </form>
 

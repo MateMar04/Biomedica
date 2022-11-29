@@ -30,37 +30,37 @@
             {% csrf_token %}
             <h2 class="form_title title">Modificar un Paciente</h2>
             <input readonly class="custom-border-form" type="text" placeholder="ID *" name="id"
-                   value="{{ paciente.id }}">
+                   value="{{ paciente.id }}"required>
             <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre"
-                   value="{{ paciente.nombre }}">
+                   value="{{ paciente.nombre }}"required>
             <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido"
-                   value="{{ paciente.apellido }}">
-            <select class="custom-border-select" name="tipo_documento">
+                   value="{{ paciente.apellido }}"required>
+            <select class="custom-border-select" name="tipo_documento"required>
                 <option disabled selected value="">Tipo de Documento</option>
                 {% for t in tipo %}
                     <option value="{{ t.id }}"> {{ t.nombre }}</option>
                 {% endfor %}
             </select>
             <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento"
-                   value="{{ paciente.n_documento }}">
-            <select class="custom-border-select" name="sexo">
+                   value="{{ paciente.n_documento }}"required>
+            <select class="custom-border-select" name="sexo"required>
                 <option disabled selected value="">Seleccione su Sexo</option>
                 {% for s in sexo %}
                     <option value="{{ s.id }}"> {{ s.nombre }}</option>
                 {% endfor %}
             </select>
             <input class="custom-border-form" type="text" placeholder="Calle *" name="calle"
-                   value="{{ paciente.id_domicilio.calle }}">
+                   value="{{ paciente.id_domicilio.calle }}"required>
             <input class="custom-border-form" type="number" placeholder="Altura *" name="altura"
-                   value="{{ paciente.id_domicilio.altura }}">
+                   value="{{ paciente.id_domicilio.altura }}"required>
             <input class="custom-border-form" type="text" placeholder="N° Piso " name="nro_piso"
                    value="{{ paciente.id_domicilio.n_piso }}">
             <input class="custom-border-form" type="text" placeholder="Departamento" name="departamento"
                    value="{{ paciente.id_domicilio.departamento }}">
             <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono"
-                   value="{{ paciente.id_telefono.numero }}">
+                   value="{{ paciente.id_telefono.numero }}"required>
             <input class="custom-border-form" type="text" placeholder="Email *" name="email"
-                   value="{{ paciente.email }}">
+                   value="{{ paciente.email }}"required>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Modificar Paciente</button>
         </form>
 

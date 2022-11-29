@@ -29,27 +29,27 @@
         <form class="form" id="a-form" method="post" action="{% url 'registrarPaciente' %}">
             {% csrf_token %}
             <h2 class="form_title title">Registar un Paciente</h2>
-            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre">
-            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido">
-            <select class="custom-border-select" name="tipo_documento">
+            <input class="custom-border-form" type="text" placeholder="Nombre *" name="nombre" required>
+            <input class="custom-border-form" type="text" placeholder="Apellido *" name="apellido"required>
+            <select class="custom-border-select" name="tipo_documento"required>
                 <option disabled selected value="">Tipo de Documento</option>
                 {% for t in tipo %}
                     <option value="{{ t.id }}"> {{ t.nombre }}</option>
                 {% endfor %}
             </select>
-            <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento">
-            <select class="custom-border-select" name="sexo">
-                <option disabled selected value="">Seleccione su Sexo</option>
+            <input class="custom-border-form" type="number" placeholder="N° Documento *" name="nro_documento"required>
+            <select class="custom-border-select" name="sexo" required>
+                <option disabled selected value="" >Seleccione su Sexo</option>
                 {% for s in sexo %}
-                    <option value="{{ s.id }}"> {{ s.nombre }}</option>
+                    <option value="{{ s.id }}" > {{ s.nombre }}</option>
                 {% endfor %}
             </select>
-            <input class="custom-border-form" type="text" placeholder="Calle *" name="calle">
-            <input class="custom-border-form" type="number" placeholder="Altura *" name="altura">
+            <input class="custom-border-form" type="text" placeholder="Calle *" name="calle"required>
+            <input class="custom-border-form" type="number" placeholder="Altura *" name="altura"required>
             <input class="custom-border-form" type="text" placeholder="N° Piso " name="nro_piso">
             <input class="custom-border-form" type="text" placeholder="Departamento" name="departamento">
-            <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono">
-            <input class="custom-border-form" type="text" placeholder="Email *" name="email">
+            <input class="custom-border-form" type="tel" placeholder="Telefono *" name="telefono"required>
+            <input class="custom-border-form" type="email" placeholder="Email *" name="email"required>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Registrar Paciente</button>
         </form>
 

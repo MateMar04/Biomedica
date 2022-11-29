@@ -55,25 +55,15 @@ For this webpage to function, you'll need some libraries that are specified in t
 The libraries are:
 
 ```
-
 asgiref==3.5.2
-
 cffi==1.15.1
-
 cryptography==38.0.3
-
 Django==4.1.2
-
 django-jazzmin==2.6.0
-
 fpdf==1.7.2
-
 pycparser==2.21
-
 PyMySQL==1.0.2
-
 sqlparse==0.4.3
-
 ```
 
   
@@ -120,7 +110,7 @@ This command is going to install the specified  versions of each library in the
 
 ## Authors and Acknowledgment
 
-Lorenzo Galaverna<br>Mateo Marchisone<br>Jose Urtubey<br>
+Lorenzo Galaverna <a href="https://github.com/LorenzoGalaverna"> GitHub</a><br>Mateo Marchisone <a href="https://github.com/MateMar04"> GitHub</a><br>Jose Urtubey <a href="https://github.com/JoseUrtubey"> GitHub</a><br>
 
 ## License
 

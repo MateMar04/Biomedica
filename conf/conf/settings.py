@@ -73,9 +73,14 @@ WSGI_APPLICATION = "conf.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'BIOMEDICA',  # Nombre de la base de datos
+        'USER': 'bdi',  # Usuario de mysql
+        'PASSWORD': 'pepe1234',  # Contrasenia de mysql
+        'HOST': 'localhost',
+        # Or anIP Address that your DB is hostedon
+        'PORT': '3306',
     }
 }
 

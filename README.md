@@ -4,7 +4,25 @@
 Biomedical is a web designed designed with Django, a Python Framework. This webpage is used for the administration patients, medicals, studies, results, doctors, etc
 
 ## Visuals
-Working on it :)
+
+<a><img src="https://imgur.com/HKZDx1k.png" title="source: imgur.com"/></a>
+<br>
+<hr>
+<br>
+<a><img src="https://imgur.com/QM4H2MW.png" title="source: imgur.com"/></a>
+<br>
+<hr>
+<br>
+<a><img src="https://imgur.com/odLUNGH.png" title="source: imgur.com"/></a>
+<br>
+<hr>
+<br>
+<a><img src="https://imgur.com/B58jsnt.png" title="source: imgur.com"/></a>
+<br>
+<hr>
+<br>
+<a><img src="https://imgur.com/LNxbRiM.png" title="source: imgur.com"/></a>
+
 
 ## Libraries
 For this webpage to function, you'll need some libraries that are specified in the ```requirements.txt``` file.
@@ -14,6 +32,8 @@ asgiref==3.5.2
 cffi==1.15.1
 cryptography==38.0.3
 Django==4.1.2
+django-jazzmin==2.6.0
+fpdf==1.7.2
 pycparser==2.21
 PyMySQL==1.0.2
 sqlparse==0.4.3
@@ -32,7 +52,6 @@ We can create a virtual environment with the librarie called virtualenv that is 
 Then we activate it with the following command:
 ```source activate <virtualenv_name/bin/activate>```
 We will see the name of the name of the virtual environment closed by round brackets
-
 <a href="https://imgur.com/mwTw5AU"><img src="https://i.imgur.com/mwTw5AU.png" title="source: imgur.com" /></a>
 
 #### Installing Libraries

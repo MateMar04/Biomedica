@@ -12,30 +12,35 @@
 <body>
 {% include 'header.html' %}
 <h1>Resultados
-    de {{ paciente.nombre }} {{ paciente.apellido }}, {{ paciente.id_tipo_de_documento }}: {{ paciente.n_documento }}</h1>
+    de {{ paciente.nombre }} {{ paciente.apellido }}, {{ paciente.id_tipo_de_documento }}: {{ paciente.n_documento
+    }}</h1>
 <div class="container">
-    <ul class="responsive-table">
-        <li class="table-header">
-            <div class="col col-1 cell-title">Solicitud</div>
-            <div class="col col-1 cell-title">Fecha de Recepcion</div>
-            <div class="col col-1 cell-title">Medico</div>
-            <div class="col col-1 cell-title">Fecha Finalizacion</div>
-            <div class="col col-1 cell-title">Fecha Receta</div>
-            <div class="col col-1 cell-title">Estado</div>
-        </li>
-        {% for r in resultado %}
+    <form method="post" action="{% url 'exportPdf' %}">
+        {% csrf_token %}
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1 cell-title">Solicitud</div>
+                <div class="col col-1 cell-title">Fecha de Recepcion</div>
+                <div class="col col-1 cell-title">Medico</div>
+                <div class="col col-1 cell-title">Fecha Finalizacion</div>
+                <div class="col col-1 cell-title">Fecha Receta</div>
+                <div class="col col-1 cell-title">Estado</div>
+            </li>
+
+            {% for r in resultado %}
             <li class="table-row">
                 <div class="col col-1" data-label="Solicitud">{{ r.id_solicitud.id }}</div>
                 <div class="col col-1" data-label="Fecha de Recepcion">{{ r.id_solicitud.fecha_hora_inicio }}</div>
                 <div class="col col-1" data-label="Medico">{{ r.id_solicitud.id_medico }}</div>
                 <div class="col col-1"
-                     data-label="Fecha de Finalizacion">{{ r.id_solicitud.fecha_hora_finalizacion }}</div>
+                     data-label="Fecha de Finalizacion">{{ r.id_solicitud.fecha_hora_finalizacion }}
+                </div>
                 <div class="col col-1" data-label="Fecha de Receta">{{ r.id_solicitud.fecha_receta }}</div>
                 <div class="col col-1" data-label="Estado">{{ r.id_solicitud.id_estado }}</div>
             </li>
-        {% endfor %}
-    </ul>
-    {% for r in resultado %}
+            {% endfor %}
+        </ul>
+        {% for r in resultado %}
         <hr>
         <div class="container">
             <table>
@@ -58,7 +63,8 @@
                 <tr>
                     <td class="cell cell-title">Rango de Referencia:</td>
                     <td class="cell">{{ r.id_estudio.limite_inferior }}
-                        - {{ r.id_estudio.limite_superior }} {{ r.id_estudio.id_unidad_de_medida }}</td>
+                        - {{ r.id_estudio.limite_superior }} {{ r.id_estudio.id_unidad_de_medida }}
+                    </td>
                 </tr>
                 <tr>
                     <td class="cell cell-title">Valor Hallado:</td>
@@ -67,11 +73,16 @@
             </table>
         </div>
 
-    {% endfor %}
-    <div class="aligned-right-btn" >
-    <button class="nav-link custom-btn custom-border-btn btn inactive aligned-right-btn " >¿Desea Guardar Sus Datos?</button>
-    </div>
-</div>
+        {% endfor %}
+        <div class="aligned-right-btn">
 
+
+            <button class="nav-link custom-btn custom-border-btn btn inactive aligned-right-btn">¿Desea Guardar Sus
+                Datos?
+            </button>
+
+    </form>
+</div>
+</div>
 </body>
 </html>

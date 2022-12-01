@@ -2,6 +2,10 @@ import datetime
 import random
 import string
 
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+
 from django.shortcuts import render
 
 from .models import *
@@ -176,3 +180,21 @@ def generate_cap(length):
     letters = string.ascii_lowercase
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
+
+
+def export_pdf(request):
+
+    print(f"---{request.POST}---")
+
+
+    buffer = io.BytesIO()
+
+    p = canvas.Canvas(buffer)
+
+    p.drawString(100, 100, "")
+
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+

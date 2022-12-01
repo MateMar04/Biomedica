@@ -163,26 +163,27 @@ def registrar_solicitud(request, null=None):
                                              fecha_hora_finalizacion=null,
                                              cap=generate_cap(8))
 
-        p.drawString(100, 800, f"{solicitud.id}")
-        p.drawString(100, 780, f"{solicitud.fecha_hora_inicio}")
-        p.drawString(100, 760, f"{solicitud.id_extraccionista.nombre} {solicitud.id_extraccionista.apellido}")
-        p.drawString(100, 740, f"{solicitud.id_paciente.nombre} {solicitud.id_paciente.apellido}")
-        p.drawString(100, 720, f"{solicitud.id_medico.nombre} {solicitud.id_medico.apellido}")
-
-        altura = 720
+        p.drawString(100, 800, f"BIOMEDICA")
+        p.drawString(100, 760, f"Solicitud ID: {solicitud.id}")
+        p.drawString(100, 740, f"Fecha: {solicitud.fecha_hora_inicio}")
+        p.drawString(100, 720, f"Extraccionista: {solicitud.id_extraccionista.nombre} {solicitud.id_extraccionista.apellido}")
+        p.drawString(100, 680, f"Paciente: {solicitud.id_paciente.nombre} {solicitud.id_paciente.apellido}")
+        p.drawString(100, 660, f"Medico: {solicitud.id_medico.nombre} {solicitud.id_medico.apellido}")
+        p.drawString(100, 620, "Estudios")
+        altura = 620
         for i in range(len(request.POST.getlist('estudio'))):
             resultado = Resultado.objects.create(valor_hallado=null, fecha=null,
                                                  id_estudio=estudios[int(request.POST.getlist('estudio')[i]) - 1],
                                                  id_solicitud=solicitud, observacion=null)
             altura = altura - 20
-            p.drawString(100, altura, f"{resultado.id_estudio.nombre}")
+            p.drawString(110, altura, f"* {resultado.id_estudio.nombre}")
 
-        p.drawString(100, altura-20, f"{solicitud.cap}")
+        p.drawString(100, altura-40, f"CAP: {solicitud.cap}")
 
         p.showPage()
         p.save()
         buffer.seek(0)
-        return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+        return FileResponse(buffer, as_attachment=True, filename='comprobante_solicitud.pdf')
     else:
         message = f"La solicitud no se pudo registrar porque la receta esta vencida"
         return render(request, "failed.html", context={"message": message})

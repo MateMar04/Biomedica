@@ -29,23 +29,23 @@
         <form class="form" id="a-form" method="post" action="{% url 'registrarSolicitud' %}">
             {% csrf_token %}
             <h2 class="form_title title">Realiza una Solicitud</h2>
-            <input class="custom-border-form" type="text" placeholder="Receta" name="receta"required>
-            <input class="custom-border-form" type="date" placeholder="Fecha de la Receta" name="fecha_receta"required>
-            <select class="custom-border-select" name="paciente"required>
+            <input class="custom-border-form" type="text" placeholder="Receta" name="receta" required>
+            <input class="custom-border-form" type="date" placeholder="Fecha de la Receta" name="fecha_receta" required>
+            <select class="custom-border-select" name="paciente" required>
                 <option disabled selected value="">Seleccione un Paciente</option>
                 {% for p in paciente %}
                     <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }} {{ p.n_documento }}</option>
                 {% endfor %}
             </select>
 
-            <select class="custom-border-select" name="extraccionista"required>
+            <select class="custom-border-select" name="extraccionista" required>
                 <option disabled selected value="">Seleccione un Extraccionista</option>
                 {% for e in extraccionista %}
                     <option value="{{ e.id }}">{{ e.nombre }} {{ e.apellido }}</option>
                 {% endfor %}
             </select>
 
-            <select class="custom-border-select" name="medico"required>
+            <select class="custom-border-select" name="medico" required>
                 <option disabled selected value="">Seleccione un Medico</option>
                 {% for m in medico %}
                     <option value="{{ m.id }}">{{ m.nombre }} {{ m.apellido }}</option>
@@ -57,17 +57,21 @@
                     <p>
                         <label for="{{ es.id }}"> {{ es.nombre }}</label>
                         <input name="estudio" class="custom-border-form" type="checkbox" id="{{ es.id }}"
-                           value="{{ es.id }}">
+                               value="{{ es.id }}">
                     </p>
-                    
 
-                    
+
+
                 {% endfor %}
             </div>
             <button class="nav-link custom-btn custom-border-btn btn inactive">Realizar Solicitud</button>
-            <a style="text-align:center;margin:2px;margin-top: 2rem; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'paciente' %}">Crear Paciente</a>
-            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'getPacienteForModificacionView' %}">Modificar Paciente</a>
-            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px" class="nav-link custom-btn custom-border-btn inactive" href="{% url 'medico' %}">Crear Medico</a>
+            <a style="text-align:center;margin:2px;margin-top: 2rem; padding-top:5px;padding-bottom:5px"
+               class="nav-link custom-btn custom-border-btn inactive" href="{% url 'paciente' %}">Crear Paciente</a>
+            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px"
+               class="nav-link custom-btn custom-border-btn inactive" href="{% url 'getPacienteForModificacionView' %}">Modificar
+                Paciente</a>
+            <a style="text-align:center;margin:2px; padding-top:5px;padding-bottom:5px"
+               class="nav-link custom-btn custom-border-btn inactive" href="{% url 'medico' %}">Crear Medico</a>
         </form>
     </section>
 </div>

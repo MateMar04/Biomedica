@@ -182,19 +182,19 @@ def generate_cap(length):
     return result_str
 
 
+'''
 def export_pdf(request):
-
-    print(f"---{request.POST}---")
-
+    solicitudes = Solicitud.objects.all()
+    solicitud = solicitudes[int(request.POST['id']-1)]
 
     buffer = io.BytesIO()
 
     p = canvas.Canvas(buffer)
-
-    p.drawString(100, 100, "")
+    
+    p.drawString(100, 100, Solicitud.objects.filter(id= solicitud.id))
 
     p.showPage()
     p.save()
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
-
+'''

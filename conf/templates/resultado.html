@@ -1,5 +1,6 @@
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Biomedical</title>
@@ -9,14 +10,14 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
     <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
 </head>
+
 <body>
-{% include 'header.html' %}
-<h1>Resultados
-    de {{ paciente.nombre }} {{ paciente.apellido }}, {{ paciente.id_tipo_de_documento }}: {{ paciente.n_documento
-    }}</h1>
-<div class="container">
-    <form method="post" action="{% url 'exportPdf' %}">
-        {% csrf_token %}
+    {% include 'header.html' %}
+    <h2 style="padding-left:30px">Resultados
+        de {{ paciente.nombre }} {{ paciente.apellido }}, {{ paciente.id_tipo_de_documento }}: {{ paciente.n_documento}}
+    </h2>
+    <div class="container">
+
         <ul class="responsive-table">
             <li class="table-header">
                 <div class="col col-1 cell-title">Solicitud</div>
@@ -32,15 +33,18 @@
                 <div class="col col-1" data-label="Solicitud">{{ r.id_solicitud.id }}</div>
                 <div class="col col-1" data-label="Fecha de Recepcion">{{ r.id_solicitud.fecha_hora_inicio }}</div>
                 <div class="col col-1" data-label="Medico">{{ r.id_solicitud.id_medico }}</div>
-                <div class="col col-1"
-                     data-label="Fecha de Finalizacion">{{ r.id_solicitud.fecha_hora_finalizacion }}
+                <div class="col col-1" data-label="Fecha de Finalizacion">{{ r.id_solicitud.fecha_hora_finalizacion }}
                 </div>
                 <div class="col col-1" data-label="Fecha de Receta">{{ r.id_solicitud.fecha_receta }}</div>
                 <div class="col col-1" data-label="Estado">{{ r.id_solicitud.id_estado }}</div>
             </li>
             {% endfor %}
         </ul>
+
+
+
         {% for r in resultado %}
+
         <hr>
         <div class="container">
             <table>
@@ -74,15 +78,21 @@
         </div>
 
         {% endfor %}
+
+
         <div class="aligned-right-btn">
 
-
-            <button class="nav-link custom-btn custom-border-btn btn inactive aligned-right-btn">¿Desea Guardar Sus
-                Datos?
-            </button>
-
-    </form>
-</div>
-</div>
+            <!--
+                <form method="post" action="{% url 'exportPdf' %}">
+                {% csrf_token %}
+                <button class="nav-link custom-btn custom-border-btn btn inactive aligned-right-btn">¿Desea Guardar Sus
+                    Datos?
+                </button>
+                
+                </form>
+            -->
+        </div>
+    </div>
 </body>
+
 </html>

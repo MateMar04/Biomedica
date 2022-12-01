@@ -27,7 +27,7 @@ from confApp.views import (
     get_paciente_for_modificacion_view,
     load_paciente,
     modify_paciente,
-    export_pdf
+    #export_pdf
 )
 from django.contrib import admin
 from django.urls import path
@@ -48,5 +48,5 @@ urlpatterns = [
          name='getPacienteForModificacionView'),
     path('load_paciente/', load_paciente, name='loadPaciente'),
     path('modify_paciente/', modify_paciente, name='modifyPaciente'),
-    path('export/', export_pdf, name="exportPdf")
+    #path('export/', export_pdf, name="exportPdf")
 ]

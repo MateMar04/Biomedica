@@ -1,8 +1,11 @@
 import datetime
+import io
 import random
 import string
 
+from django.http import FileResponse
 from django.shortcuts import render
+from reportlab.pdfgen import canvas
 
 from .models import *
 
@@ -139,40 +142,59 @@ def registrar_paciente(request, null=None):
 
 def registrar_solicitud(request, null=None):
     limit_date = datetime.date.today() - datetime.timedelta(days=15)
-    try:
-        if request.POST['fecha_receta'] > str(limit_date):
-            pacientes = Paciente.objects.all()
-            medicos = Medico.objects.all()
-            estados = EstadoDeSolicitud.objects.all()
-            estudios = Estudio.objects.all()
-            extraccionistas = Extraccionista.objects.all()
-            solicitud = Solicitud.objects.create(receta=request.POST['receta'],
-                                                 fecha_receta=request.POST['fecha_receta'],
-                                                 id_paciente=pacientes[int(request.POST['paciente']) - 1],
-                                                 id_estado=estados[2],
-                                                 id_medico=medicos[int(request.POST['medico']) - 1],
-                                                 id_extraccionista=extraccionistas[
-                                                     int(request.POST['extraccionista']) - 1],
-                                                 fecha_hora_inicio=datetime.datetime.now(),
-                                                 fecha_hora_finalizacion=null,
-                                                 cap=generate_cap(8))
+    if request.POST['fecha_receta'] > str(limit_date):
 
-            for i in range(len(request.POST.getlist('estudio'))):
-                resultado = Resultado.objects.create(valor_hallado=null, fecha=null,
-                                                     id_estudio=estudios[int(request.POST.getlist('estudio')[i]) - 1],
-                                                     id_solicitud=solicitud, observacion=null)
+        buffer = io.BytesIO()
+        p = canvas.Canvas(buffer)
 
-            message = f"Solicitud id: {solicitud.id} registrada con exito"
-            return render(request, "success.html", context={"message": message})
-        else:
-            message = f"La solicitud no se pudo registrar porque la receta esta vencida"
-            return render(request, "failed.html", context={"message": message})
-    except:
-        message = f"La solicitud no se pudo registrar"
+        pacientes = Paciente.objects.all()
+        medicos = Medico.objects.all()
+        estados = EstadoDeSolicitud.objects.all()
+        estudios = Estudio.objects.all()
+        extraccionistas = Extraccionista.objects.all()
+        solicitud = Solicitud.objects.create(receta=request.POST['receta'],
+                                             fecha_receta=request.POST['fecha_receta'],
+                                             id_paciente=pacientes[int(request.POST['paciente']) - 1],
+                                             id_estado=estados[2],
+                                             id_medico=medicos[int(request.POST['medico']) - 1],
+                                             id_extraccionista=extraccionistas[
+                                                 int(request.POST['extraccionista']) - 1],
+                                             fecha_hora_inicio=datetime.datetime.now(),
+                                             fecha_hora_finalizacion=null,
+                                             cap=generate_cap(8))
+
+        p.drawString(100, 800, f"{solicitud.id}")
+        p.drawString(100, 780, f"{solicitud.fecha_hora_inicio}")
+        p.drawString(100, 760, f"{solicitud.id_extraccionista.nombre} {solicitud.id_extraccionista.apellido}")
+        p.drawString(100, 740, f"{solicitud.id_paciente.nombre} {solicitud.id_paciente.apellido}")
+        p.drawString(100, 720, f"{solicitud.id_medico.nombre} {solicitud.id_medico.apellido}")
+
+        altura = 720
+        for i in range(len(request.POST.getlist('estudio'))):
+            resultado = Resultado.objects.create(valor_hallado=null, fecha=null,
+                                                 id_estudio=estudios[int(request.POST.getlist('estudio')[i]) - 1],
+                                                 id_solicitud=solicitud, observacion=null)
+            altura = altura - 20
+            p.drawString(100, altura, f"{resultado.id_estudio.nombre}")
+
+        p.drawString(100, altura-20, f"{solicitud.cap}")
+
+        p.showPage()
+        p.save()
+        buffer.seek(0)
+        return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+    else:
+        message = f"La solicitud no se pudo registrar porque la receta esta vencida"
         return render(request, "failed.html", context={"message": message})
+    message = f"La solicitud no se pudo registrar"
+    return render(request, "failed.html", context={"message": message})
 
 
 def generate_cap(length):
     letters = string.ascii_lowercase
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
+
+
+def generate_pdf(text):
+    pass

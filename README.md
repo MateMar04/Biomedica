@@ -60,9 +60,11 @@ cffi==1.15.1
 cryptography==38.0.3
 Django==4.1.2
 django-jazzmin==2.6.0
-fpdf==1.7.2
+Pillow==9.3.0
 pycparser==2.21
 PyMySQL==1.0.2
+reportlab==3.6.12
+six==1.16.0
 sqlparse==0.4.3
 ```
 

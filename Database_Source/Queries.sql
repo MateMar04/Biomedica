@@ -1,6 +1,9 @@
-drop database if exists BIOMEDICA;
-create database if not exists BIOMEDICA;
-use BIOMEDICA;
+drop
+database if exists BIOMEDICA;
+create
+database if not exists BIOMEDICA;
+use
+BIOMEDICA;
 CREATE TABLE SEXO
 (
     ID           INTEGER PRIMARY KEY AUTO_INCREMENT,
